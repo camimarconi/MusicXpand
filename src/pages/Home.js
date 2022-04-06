@@ -16,11 +16,11 @@ function Home() {
           <main className="px-3">
             <h1>Discover New Music</h1>
             <p className="lead main-text">
-              Look up for words to find new artists, genres, melodies, songs
-              based on what you searched.
+              Look up for words to find new artists, musical genres, melodies
+              and songs based on what you've searched.
             </p>
             <p className="lead main-text">
-              You can add your favorite songs to a personal playlist.
+              You can add your favorite songs to a personalized playlist.
             </p>
             <p className="lead main-text">Let's go?</p>
             <form>
@@ -35,7 +35,7 @@ function Home() {
               <div>
                 <button
                   type="submit"
-                  className="btn btn-lg btn-secondary fw-bold border-white bg-white mt-3"
+                  className="btn btn-lg btn-secondary fw-bold border-white bg-white mt-5"
                 >
                   Discover
                 </button>
@@ -43,7 +43,7 @@ function Home() {
             </form>
           </main>
 
-          <footer className="mt-auto text-white-50">
+          <footer className="m-5 text-white-50">
             <p>
               Cover template for{" "}
               <Link to="https://getbootstrap.com/" className="text-white">
