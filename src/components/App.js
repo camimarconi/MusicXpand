@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import axios from "axios";
 import qs from "qs";
+import Playlist from "../pages/Playlist";
 
 const spotifyApi = new SpotifyWebApi();
 
 function App() {
   const [state, setState] = useState("");
+
   // Retrieve an access token
   useEffect(() => {
     axios
@@ -54,6 +56,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/playlist" element={<Playlist />} />
         </Routes>
       </div>
     </div>
