@@ -98,25 +98,25 @@ return (
             <div className="d-flex flex-wrap justify-content-around">
                     {banana.map((current) => {
                         return (
-                            <div className="card mt-5 d-flex flex-col mb-4" style={{'width': '18rem'}}>
-                                <div className="card-body col justify-content-between">
+                            <div className="card mt-5 d-flex flex-col mb-4" style={{'width': '21rem'}}>
+                                <div className="card-body col align-self-center">
                                     <img src={current.album.images[0].url} className="card-img-top" alt="..."/>
                                     <h5 className="mt-3 fs-3 col">{current.artists[0].name}</h5>
                                     <h4 className="mt-3 fs-5 col">{current.name}</h4>
                                     <h6 className="mt-3 card-subtitle mb-2 text-muted col align-self-center">{current.album.name}</h6>
                                     {/* <p className="card-text">{current.artists[0].external_urls.spotify}</p> */}
                                     
-                                    <div className="justify-self-end">
+                                    <div className="align-self-end">
                                     <audio controls src={current.preview_url}></audio>
                                     <button
                                         className="btn btn-discovery col"
-                                        onClick={() => navigate(`/playlist/Add`)}
+                                        onClick={() => navigate(`/playlist/add`)}
                                     >
                                     Add
                                     </button>
                                     <button
                                         className="btn btn-details col"
-                                        onClick={() => navigate(`/playlist/Details`)}
+                                        onClick={() => navigate(`/playlist/details`)}
                                     >
                                     Details
                                     </button>
