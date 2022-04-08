@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import axios from "axios";
 import qs from "qs";
-import Playlist from "../pages/Playlist";
+import Search from "../pages/Search";
+
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -38,16 +39,16 @@ function App() {
       });
   }, []);
 
-  useEffect(() => {
-    spotifyApi.getArtistAlbums("43ZHCT0cAZBISjO8DG9PnE").then(
-      function (data) {
-        console.log("Artist albums", data);
-      },
-      function (err) {
-        console.error(err);
-      }
-    );
-  }, [state]);
+  // useEffect(() => {
+  //   spotifyApi.getArtistAlbums("43ZHCT0cAZBISjO8DG9PnE").then(
+  //     function (data) {
+  //       console.log("Artist albums", data);
+  //     },
+  //     function (err) {
+  //       console.error(err);
+  //     }
+  //   );
+  // }, [state]);
 
   return (
     <div>
@@ -56,7 +57,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/playlist" element={<Playlist />} />
+          <Route path="/search/:keyword" element={<Search token={state} />} />
         </Routes>
       </div>
     </div>
