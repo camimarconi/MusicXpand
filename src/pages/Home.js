@@ -11,11 +11,11 @@ function Home() {
     setState(event.target.value);
   }
 
+  console.log(state);
+
   function handleSubmit(event) {
     event.preventDefault();
   }
-
-  console.log("state:", state);
 
   return (
     <div>
@@ -34,19 +34,13 @@ function Home() {
             </p>
             <form onSubmit={handleSubmit}>
               <div>
-                <FormControl
-                  className="mt-5"
-                  id="discover"
-                  name="keyword"
-                  onChange={handleDiscover}
-                  value={state}
-                />
+                <FormControl onChange={handleDiscover} value={state} />
               </div>
               <div>
                 <button
                   type="submit"
                   className="btn btn-lg btn-secondary fw-bold border-white bg-white mt-5"
-                  onClick={() => navigate(`/playlist`)}
+                  onClick={() => navigate(`/search/${state}`)}
                 >
                   Discover
                 </button>
