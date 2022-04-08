@@ -1,12 +1,17 @@
 function FormControl(props) {
+
+    console.log(props)
+
     return (
-        <div>
-            <input
-                value={props.value}
-                onChange={props.onChange}
-            />
-        </div>
-    )
+          <input
+            className="mt-5"
+            id="discover"
+            name="keyword"
+            onChange={props.onChange}
+            value={props.value}
+          />
+    );
+
 }
 
 export default FormControl;
