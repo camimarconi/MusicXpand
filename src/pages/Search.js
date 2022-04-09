@@ -99,15 +99,12 @@ return (
                     {banana.map((current) => {
                         return (
                             <div className="card mt-5 d-flex flex-col mb-4" style={{'width': '21rem'}}>
-                                <div className="card-body col align-self-center">
+                                <div className="card-body col">
                                     <img src={current.album.images[0].url} className="card-img-top" alt="..."/>
                                     <h5 className="mt-3 fs-3 col">{current.artists[0].name}</h5>
                                     <h4 className="mt-3 fs-5 col">{current.name}</h4>
                                     <h6 className="mt-3 card-subtitle mb-2 text-muted col align-self-center">{current.album.name}</h6>
-                                    {/* <p className="card-text">{current.artists[0].external_urls.spotify}</p> */}
-                                    
-                                    <div className="align-self-end">
-                                    <audio controls src={current.preview_url}></audio>
+                                    <audio className="player-layout"controls src={current.preview_url}></audio>
                                     <button
                                         className="btn btn-discovery col"
                                         onClick={() => navigate(`/playlist/add`)}
@@ -122,7 +119,7 @@ return (
                                     </button>
                                     </div>
                                 </div>
-                            </div>
+                            
                         )
                     })};
             </div> 
