@@ -111,7 +111,11 @@ function Search(props) {
                   <audio controls src={current.preview_url}></audio>
                   <button
                     className="btn btn-discovery col"
-                    onClick={() => navigate(`/playlist/add`)}
+                    onClick={() => {
+                      //addMusicList
+
+                      navigate(`/playlist/add`);
+                    }}
                   >
                     Add
                   </button>
