@@ -3,7 +3,6 @@ import FormControl from "../components/FormControl";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-
 function Home() {
   const [state, setState] = useState("");
   const navigate = useNavigate();
@@ -12,12 +11,11 @@ function Home() {
     setState(event.target.value);
   }
 
-  console.log(state)
+  console.log(state);
 
   function handleSubmit(event) {
-      event.preventDefault();
-    };
-
+    event.preventDefault();
+  }
 
   return (
     <div>
@@ -29,10 +27,8 @@ function Home() {
             <p className="fs-5">
               Look up for words to find new artists,
             </p>
-            </div>
-            <div className="p-layout">
-            <p className="fs-5">
-            musical genres and songs based on what you've searched.
+            <p class="col lead main-text">
+              musical genres and songs based on what you've searched.
             </p>
             </div>
             <div className="p-layout">
@@ -42,10 +38,7 @@ function Home() {
             </div>
             <form onSubmit={handleSubmit}>
               <div>
-                <FormControl
-                  onChange={handleDiscover}
-                  value={state}
-                />
+                <FormControl onChange={handleDiscover} value={state} />
               </div>
               <div>
                 <button
