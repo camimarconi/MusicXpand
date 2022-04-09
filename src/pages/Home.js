@@ -3,7 +3,6 @@ import FormControl from "../components/FormControl";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-
 function Home() {
   const [state, setState] = useState("");
   const navigate = useNavigate();
@@ -12,13 +11,11 @@ function Home() {
     setState(event.target.value);
   }
 
-  console.log(state)
+  console.log(state);
 
   function handleSubmit(event) {
-      event.preventDefault();
-    };
-
-
+    event.preventDefault();
+  }
 
   return (
     <div>
@@ -30,17 +27,14 @@ function Home() {
               Look up for words to find new artists,
             </p>
             <p class="col lead main-text">
-            musical genres and songs based on what you've searched.
+              musical genres and songs based on what you've searched.
             </p>
             <p className="col lead main-text">
               You can add your favorite songs to a personalized playlist.
             </p>
             <form onSubmit={handleSubmit}>
               <div>
-                <FormControl
-                  onChange={handleDiscover}
-                  value={state}
-                />
+                <FormControl onChange={handleDiscover} value={state} />
               </div>
               <div>
                 <button

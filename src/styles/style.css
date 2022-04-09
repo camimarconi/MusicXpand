@@ -56,7 +56,6 @@
   border-bottom-color: #fff;
 }
 
-
 .feature-icon {
   display: inline-flex;
   align-items: center;
@@ -66,7 +65,7 @@
   margin-bottom: 3rem;
   font-size: 2rem;
   color: #fff;
-  border-radius: .75rem;
+  border-radius: 0.75rem;
 }
 
 .result {
@@ -75,15 +74,14 @@
 }
 
 .btn-discovery {
-  background-image: linear-gradient(#f33c7f, rgb(242,38,113));
+  background-image: linear-gradient(#f33c7f, rgb(242, 38, 113));
   color: white;
   margin-top: 1rem;
   margin-right: 1rem;
 }
 
 .btn-details {
-  background-image: linear-gradient(rgb(116,68,156),rgb(98,52,148));
+  background-image: linear-gradient(rgb(116, 68, 156), rgb(98, 52, 148));
   color: white;
   margin-top: 1rem;
 }
-

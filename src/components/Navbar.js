@@ -9,7 +9,7 @@ function Navbar() {
           <div>
             <h3 className="float-md-start mb-0">MusicXpand</h3>
             <nav className="nav nav-masthead justify-content-center float-md-end">
-              <Link className="nav-link active" aria-current="page" to='/'>
+              <Link className="nav-link active" aria-current="page" to="/">
                 Home
               </Link>
               <Link className="nav-link" to="/playlist">
