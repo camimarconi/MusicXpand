@@ -16,7 +16,7 @@ function Navbar() {
                 Playlists
               </Link>
               <Link className="nav-link" to="#">
-                Favorites
+                Favorites.
               </Link>
             </nav>
           </div>
