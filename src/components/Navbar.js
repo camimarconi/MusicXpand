@@ -13,6 +13,7 @@ function Navbar() {
                 Home
               </Link>
               <Link className="nav-link" to="/playlist">
+                {/* <span className="badge bg-primary rounded-pill">{}</span> */}
                 Playlists
               </Link>
               <Link className="nav-link" to="#">

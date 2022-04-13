@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SpotifyWebApi from "spotify-web-api-js";
 import "../styles/style.css";
+import Playlist from "./Playlist";
+import axios from "axios";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -31,7 +33,7 @@ function Search(props) {
   useEffect(() => {
     spotifyApi.searchTracks(keyword).then(
       function (data) {
-        console.log('Search by "Banana"', data);
+        console.log('Search by "Camila"', data);
         setBanana([...data.tracks.items]);
       },
       function (err) {
@@ -39,6 +41,24 @@ function Search(props) {
       }
     );
   }, [props.token, keyword]);
+
+  function addSong(event) {
+    //capturar o id que está no banana
+    // newList ser vinculada com o state do com ponente Playlist
+    let plusSongId = event.target.value;
+    console.log(plusSongId);
+
+    axios
+      .post("https://ironrest.herokuapp.com/musicxpand", {
+        plusSongId: plusSongId,
+      })
+      .then((response) => {
+        console.log(response.data); //NOTIFICAÇÃO
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   // useEffect(() => {
   //     spotifyApi.getAudioFeaturesForTrack('6PGoSes0D9eUDeeAafB2As')
@@ -110,11 +130,8 @@ function Search(props) {
                   <audio controls src={current.preview_url}></audio>
                   <button
                     className="btn btn-discovery col"
-                    onClick={() => {
-                      //addMusicList
-
-                      navigate(`/playlist/add`);
-                    }}
+                    value={current.album.id}
+                    onClick={addSong}
                   >
                     Add
                   </button>
