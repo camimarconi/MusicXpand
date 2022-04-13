@@ -81,3 +81,8 @@
   background-image: linear-gradient(rgb(116, 68, 156), rgb(98, 52, 148));
   color: white;
 }
+
+.card-img-top {
+  width: 50px;
+  height: 50px;
+}
