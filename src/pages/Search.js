@@ -12,7 +12,6 @@ function Search(props) {
 
   console.log(keyword);
 
-  const [state, setState] = useState([]);
   const [banana, setBanana] = useState([]);
 
   console.log(banana);
@@ -34,12 +33,18 @@ function Search(props) {
   function addSong(event) {
     //capturar o id que está no banana
     // newList ser vinculada com o state do com ponente Playlist
-    let plusSongId = event.target.value;
-    console.log(plusSongId);
+    let index = event.target.value;
+    console.log(banana[index]);
+    const albumCover = banana[index].album.images[0].url;
+    const songName = banana[index].name;
+
+    console.log("albumCover", albumCover);
+    console.log("songName", songName);
 
     axios
       .post("https://ironrest.herokuapp.com/musicxpand", {
-        plusSongId: plusSongId,
+        albumCover: albumCover,
+        songName: songName,
       })
       .then((response) => {
         console.log(response.data); //NOTIFICAÇÃO
@@ -48,7 +53,6 @@ function Search(props) {
         console.error(error);
       });
   }
-
   // useEffect(() => {
   //     spotifyApi.getAudioFeaturesForTrack('6PGoSes0D9eUDeeAafB2As')
   //     .then(function(data) {
@@ -96,9 +100,10 @@ function Search(props) {
     <div className="bg-dark">
       <h2 className="result d-flex flex-row">Results containing {keyword}</h2>
       <div className="d-flex flex-wrap justify-content-around">
-        {banana.map((current) => {
+        {banana.map((current, index) => {
           return (
             <div
+              key={index}
               className="card mt-5 d-flex flex-col mb-4"
               style={{ width: "21rem" }}
             >
@@ -119,14 +124,17 @@ function Search(props) {
                   <audio controls src={current.preview_url}></audio>
                   <button
                     className="btn btn-discovery col"
-                    value={current.album.id}
+                    // value={current.album.id}
+                    value={index}
                     onClick={addSong}
                   >
                     Add
                   </button>
                   <button
                     className="btn btn-details col"
-                    onClick={() => navigate(`/playlist/details`)}
+                    onClick={() =>
+                      navigate(`/details/${current.artists[0].id}`)
+                    }
                   >
                     Details
                   </button>
