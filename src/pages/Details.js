@@ -5,17 +5,15 @@ import SpotifyWebApi from "spotify-web-api-js";
 const spotifyApi = new SpotifyWebApi();
 
 function Details(props) {
+  const { id } = useParams();
+  const [state, setState] = useState([]);
+  const [artist, setArtist] = useState({});
 
-    const { id } = useParams();
-    const [state, setState] = useState([])
-    const [tracks, setTracks] = useState([])
-
-
-    useEffect(() => {
+  useEffect(() => {
     spotifyApi.getArtistAlbums(id).then(
       function (data) {
         console.log("Artist albums", data);
-        setState([...data.items])
+        setState([...data.items]);
       },
       function (err) {
         console.error(err);
@@ -23,79 +21,105 @@ function Details(props) {
     );
   }, [props.token, id]);
 
+  useEffect(() => {
+    spotifyApi.getArtist(id).then(
+      function (data) {
+        console.log("Artist information", data);
+        setArtist({...data});
+      },
+      function (err) {
+        console.error(err);
+      }
+    );
+  }, [props.token, id]);
 
-    return (
-        <div>
-        More about
-        {tracks.map((current) => {
-            return (
-                <ol className="list-group list-group-numbered">
-                  <li className="list-group-item d-flex justify-content-between align-items-start list-layout">
-                    <div className="ms-2 me-auto">
-                      <img
-                      src={current.album.images[0].url}
-                      className="card-img-top"
-                      alt="..."
-                      />
-                      <div className="fw-bold">{current.name}</div>
-                        <audio controls src={current.preview_url} className="audio-layout"></audio>
-                      </div>
-                      <span className="badge bg-primary rounded-pill">{current.popularity}</span>
-                  </li>
-                </ol>
-            )
-        })
+  console.log("!!!!!!", artist);
 
-
-        }
-              {/* {state.map((current) => {
-            return (
-                <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
-                    <div className="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-        
-                    <div className="carousel-inner">
-                        <div className="carousel-item active">
-                            <img 
-                            src={current.images[0].url}
-                            className="d-block w-100"
-                            alt="..."
-                            />
-                            <div className="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                            </div>
-                        </div>
-                        <div className="carousel-item">
-                            <img 
-                            src={current.images[0].url} 
-                            class="d-block w-100" 
-                            alt="..."
-                            />
-                            <div className="carousel-caption d-none d-md-block">
-                                <h5>Second slide label</h5>
-                                <p>Some representative placeholder content for the second slide.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span className="visually-hidden">Previous</span>
-                    </button>
-                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span className="visually-hidden">Next</span>
-                    </button>
+  return (
+    <div>
+      <img src='' className="img-fluid" alt=""/>
+      {state.map((current) => {
+        return (
+          <div className="container">
+            <div className="mt-5">
+              <img
+                src={current.images[0].url}
+                alt="twbs"
+                width="90"
+                height="90"
+              />
+              <h2 className="mt-5 mb-3">My Playlist</h2>
+            </div>
+            <div className="list-group">
+              <li
+                className="list-group-item list-group-item-action d-flex gap-3 py-3"
+                aria-current="true"
+              >
+                <img
+                  src="https://github.com/twbs.png"
+                  alt="twbs"
+                  width="50"
+                  height="50"
+                  className="rounded-circle flex-shrink-0"
+                />
+                <div className="d-flex gap-2 w-100 justify-content-evenly align-items-center align-self-center">
+                  <h5 className="mb-0 fw-bold">Song Name</h5>
+                  <h5 className="mb-0 opacity-75">Artist Name</h5>
+                  <h5 className="mb-0 opacity-50 fw-light">Album Name</h5>
+                  <h4 className="opacity-50 text-nowrap">audio PREVIEW?</h4>
+                  <h4>DELETE</h4>
                 </div>
-                
-                )
-        })} */}
-        </div>
-        
-    )
+              </li>
+              <li
+                className="list-group-item list-group-item-action d-flex gap-3 py-3"
+                aria-current="true"
+              >
+                <img
+                  src="https://github.com/twbs.png"
+                  alt="twbs"
+                  width="32"
+                  height="32"
+                  className="rounded-circle flex-shrink-0"
+                />
+                <div className="d-flex gap-2 w-100 justify-content-between">
+                  <div>
+                    <h5 className="mb-0 fw-bold"> Nome Música</h5>
+                    <h6 className="mb-0 opacity-75">Artist Name</h6>
+                    <p className="mb-0 opacity-50 fw-light">Album Name</p>
+                  </div>
+                  <small className="opacity-50 text-nowrap">
+                    audio PREVIEW?
+                  </small>
+                </div>
+              </li>
+              <li
+                className="list-group-item list-group-item-action d-flex gap-3 py-3"
+                aria-current="true"
+              >
+                <img
+                  src="https://github.com/twbs.png"
+                  alt="twbs"
+                  width="32"
+                  height="32"
+                  className="rounded-circle flex-shrink-0"
+                />
+                <div className="d-flex gap-2 w-100 justify-content-between">
+                  <div>
+                    <h5 className="mb-0 fw-bold">Song Name</h5>
+                    <h6 className="mb-0 opacity-75">Artist Name</h6>
+                    <p className="mb-0 opacity-50 fw-light">Album Name</p>
+                  </div>
+                  <small className="opacity-50 text-nowrap">
+                    audio PREVIEW?
+                  </small>
+                </div>
+              </li>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default Details;
