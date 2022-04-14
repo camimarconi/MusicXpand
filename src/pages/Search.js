@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SpotifyWebApi from "spotify-web-api-js";
 import "../styles/style.css";
-import Playlist from "./Playlist";
 import axios from "axios";
 
 const spotifyApi = new SpotifyWebApi();
