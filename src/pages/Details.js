@@ -21,11 +21,13 @@ function Details(props) {
     );
   }, [props.token, id]);
 
+  console.log("OLHA AQUI", id);
+
   useEffect(() => {
     spotifyApi.getArtist(id).then(
       function (data) {
         console.log("Artist information", data);
-        setArtist({...data});
+        setArtist({ ...data });
       },
       function (err) {
         console.error(err);
@@ -37,7 +39,7 @@ function Details(props) {
 
   return (
     <div>
-      <img src='' className="img-fluid" alt=""/>
+      <img src="" className="img-fluid" alt="" />
       {state.map((current) => {
         return (
           <div className="container">
