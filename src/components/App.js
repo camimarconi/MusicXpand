@@ -8,6 +8,7 @@ import axios from "axios";
 import qs from "qs";
 import Search from "../pages/Search";
 import Playlist from "../pages/Playlist";
+import Details from "../pages/Details";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -59,6 +60,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/search/:keyword" element={<Search token={state} />} />
           <Route path="/playlist/" element={<Playlist token={state} />} />
+          <Route path="/details/:id" element={<Details token={state} />} />
         </Routes>
       </div>
     </div>
