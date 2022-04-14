@@ -38,7 +38,7 @@ function Details(props) {
   useEffect(() => {
     spotifyApi.getArtistTopTracks(id, "US").then(
       function (data) {
-        console.log("GHDSDFGS", data.tracks[0]);
+        console.log("Artist Top Tracks", data.tracks[0]);
         setTopTracks([ ...data.tracks]);
       },
       function (err) {
@@ -51,7 +51,7 @@ function Details(props) {
 
   return (
     <div className="bg-dark">
-    <img src={artist[0].url} className="img-fluid" alt=""/>
+    <img src={artist.images[0].url} className="img-fluid" alt=""/>
       <div className="tracks">
         <img src="" className="img-fluid" alt="" />
         <div className="container">
