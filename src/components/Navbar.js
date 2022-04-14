@@ -3,7 +3,7 @@ import "../styles/style.css";
 
 function Navbar() {
   return (
-    <div className="d-flex h-100 text-center text-white bg-dark banana">
+    <div className="d-flex h-100 text-center text-white bg-dark">
       <div className="d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header className="mb-auto">
           <div>

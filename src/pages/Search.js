@@ -15,20 +15,19 @@ function Search(props) {
   const [state, setState] = useState([]);
   const [banana, setBanana] = useState([]);
 
-  console.log(banana);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    spotifyApi.getArtistAlbums("43ZHCT0cAZBISjO8DG9PnE").then(
-      function (data) {
-        setState([...data.items]);
-      },
-      function (err) {
-        console.error(err);
-      }
-    );
-  }, []);
+  // useEffect(() => {
+  //   spotifyApi.getArtistAlbums("43ZHCT0cAZBISjO8DG9PnE").then(
+  //     function (data) {
+  //       setState([...data.items]);
+  //     },
+  //     function (err) {
+  //       console.error(err);
+  //     }
+  //   );
+  // }, []);
 
   useEffect(() => {
     spotifyApi.searchTracks(keyword).then(
@@ -137,7 +136,7 @@ function Search(props) {
                   </button>
                   <button
                     className="btn btn-details col"
-                    onClick={() => navigate(`/playlist/details`)}
+                    onClick={() => navigate(`/details/${current.artists[0].id}`)}
                   >
                     Details
                   </button>
