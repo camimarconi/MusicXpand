@@ -7,39 +7,37 @@ const spotifyApi = new SpotifyWebApi();
 function Details(props) {
   const { id } = useParams();
   const [state, setState] = useState([]);
-  const [artist, setArtist] = useState([]);
+  const [artist, setArtist] = useState({
+    id: '',
+    images: [{
+      url: '',
+    }]
+  });
   const [topTracks, setTopTracks] = useState([]);
 
   useEffect(() => {
     spotifyApi.getArtistAlbums(id).then(
       function (data) {
-        console.log("Artist albums", data);
+        // console.log("Artist albums", data);
         setState([...data.items]);
       },
       function (err) {
         console.error(err);
       }
     );
-  }, [props.token, id]);
-
-  useEffect(() => {
     spotifyApi.getArtist(id).then(
       function (data) {
         console.log("Artist information", data);
-        setArtist([ ...data.images]);
-        
+        setArtist({...data});
       },
       function (err) {
         console.error(err);
       }
     );
-  }, [props.token, id]);
-
-  useEffect(() => {
     spotifyApi.getArtistTopTracks(id, "US").then(
       function (data) {
-        console.log("Artist Top Tracks", data.tracks[0]);
-        setTopTracks([ ...data.tracks]);
+        // console.log("GHDSDFGS", data.tracks[0]);
+        setTopTracks([...data.tracks]);
       },
       function (err) {
         console.log("Something went wrong!", err);
@@ -47,11 +45,9 @@ function Details(props) {
     );
   }, [props.token, id]);
 
-  
-
   return (
     <div className="bg-dark">
-    <img src={artist.images[0].url} className="img-fluid" alt=""/>
+      <img src={artist.images[0].url} className="img-fluid" alt="" />
       <div className="tracks">
         <img src="" className="img-fluid" alt="" />
         <div className="container">
@@ -79,7 +75,7 @@ function Details(props) {
                     className="rounded-circle flex-shrink-0"
                   />
                   <div className="d-flex gap-2 w-100 justify-content-between align-items-center align-self-center">
-                    <h5 className="mb-0 fw-bold"></h5>
+                    <h5 className="mb-0 fw-bold">blá</h5>
                     <h5 className="mb-0 opacity-75">
                       {current.artists[0].name}
                     </h5>
@@ -122,3 +118,8 @@ function Details(props) {
 }
 
 export default Details;
+
+// {artist.map((current, index) => {
+//   return index === 0 ? (
+//     <img src={current.url} className="img-fluid" alt="" />
+//   ) : undefined;

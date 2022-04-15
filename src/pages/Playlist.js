@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/playlistStyle.css";
 import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-js";
+// import CreatePlaylistCoverName
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -40,15 +41,7 @@ function Playlist(props) {
 
   return (
     <div className="container">
-      <div className="mt-5">
-        <img
-          src="https://github.com/twbs.png"
-          alt="twbs"
-          width="90"
-          height="90"
-        />
-        <h2 className="mt-5 mb-3">My Playlist</h2>
-      </div>
+      {/* <CreatePlaylistCoverName /> */}
       <div className="list-group">
         <li
           className="list-group-item list-group-item-action d-flex gap-3 py-3"
