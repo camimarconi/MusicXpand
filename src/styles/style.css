@@ -88,3 +88,7 @@
   height: auto; 
 
 }
+
+.svg {
+  background-image: url("../images/trash3-fill.svg");
+}

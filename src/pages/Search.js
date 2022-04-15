@@ -12,9 +12,9 @@ function Search(props) {
 
   console.log(keyword);
 
-  const [banana, setBanana] = useState([]);
+  const [search, setSearch] = useState([]);
 
-  console.log(banana);
+  console.log(search);
 
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function Search(props) {
     spotifyApi.searchTracks(keyword).then(
       function (data) {
         console.log('Search by "Camila"', data);
-        setBanana([...data.tracks.items]);
+        setSearch([...data.tracks.items]);
       },
       function (err) {
         console.error(err);
@@ -31,20 +31,23 @@ function Search(props) {
   }, [props.token, keyword]);
 
   function addSong(event) {
-    //capturar o id que está no banana
+    //capturar o id que está no search
     // newList ser vinculada com o state do com ponente Playlist
     let index = event.target.value;
-    console.log(banana[index]);
-    const albumCover = banana[index].album.images[0].url;
-    const songName = banana[index].name;
-
-    console.log("albumCover", albumCover);
-    console.log("songName", songName);
+    console.log(search[index]);
+    const albumCover = search[index].album.images[0].url;
+    const songName = search[index].name;
+    const artistName = search[index].artists;
+    const albumName = search[index].album.name;
+    const musicPreview = search[index].preview_url;
 
     axios
       .post("https://ironrest.herokuapp.com/musicxpand", {
         albumCover: albumCover,
         songName: songName,
+        artistName: artistName,
+        albumName: albumName,
+        musicPreview: musicPreview,
       })
       .then((response) => {
         console.log(response.data); //NOTIFICAÇÃO
@@ -53,54 +56,12 @@ function Search(props) {
         console.error(error);
       });
   }
-  // useEffect(() => {
-  //     spotifyApi.getAudioFeaturesForTrack('6PGoSes0D9eUDeeAafB2As')
-  //     .then(function(data) {
-  //         // setBanana(data.track_href)
-  //         console.log('audio features:', data);
-  //     }, function(err) {
-  //         console.log(err);
-  //     });
-  //     }, [props.token]);
 
-  //     return (
-  //         <div className="bg-dark">
-  //             <h2 className="result d-flex flex-row">Results</h2>
-  //                 <div className="d-flex flex-wrap justify-content-around">
-  //                         {state.map((current) => {
-  //                             return (
-  //                                 <div className="card mt-5 d-flex flex-col mb-4" style={{'width': '18rem'}}>
-  //                                     <div className="card-body col justify-content-between">
-  //                                         <img src={current.images[0].url} className="card-img-top" alt="..."/>
-  //                                         <h5 className="mt-3 fs-3 col">{current.artists[0].name}</h5>
-  //                                         <h6 className="mt-3 card-subtitle mb-2 text-muted col align-self-center">{current.name}</h6>
-  //                                         {/* <p className="card-text">{current.artists[0].external_urls.spotify}</p> */}
-  //                                         <button
-  //                                             className="btn btn-discovery col"
-  //                                             onClick={() => navigate(`/playlist/Add`)}
-  //                                         >
-  //                                         Add
-  //                                         </button>
-  //                                         <button
-  //                                             className="btn btn-details col"
-  //                                             onClick={() => navigate(`/playlist/Details`)}
-  //                                         >
-  //                                         Details
-  //                                         </button>
-  //                                     </div>
-  //                                 </div>
-  //                             )
-  //                         })};
-  //                 </div>
-  //         </div>
-
-  //     )
-  // }
   return (
     <div className="bg-dark">
       <h2 className="result d-flex flex-row">Results containing {keyword}</h2>
       <div className="d-flex flex-wrap justify-content-around">
-        {banana.map((current, index) => {
+        {search.map((current, index) => {
           return (
             <div
               key={index}

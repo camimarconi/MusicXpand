@@ -45,6 +45,14 @@ function Details(props) {
     );
   }, [props.token, id]);
 
+  function artistCoverImgShow() {
+    if (artist.images) {
+      return <img src={artist.images[0].url} className="img-fluid" alt="" />;
+    } else {
+      return undefined;
+    }
+  }
+
   return (
     <div className="bg-dark">
       <img src={artist.images[0].url} className="img-fluid" alt="" />
