@@ -15,9 +15,13 @@ function Playlist() {
       artistName: [{ name: "" }],
       albumName: "",
       musicPreview: "",
+      _id: "",
     },
   ]);
   // const [albumDataFromSpotifyApi, setAlbumDataFromSpotifyApi] = useState([]);
+  
+
+  console.log(musicXpandListApi);
 
   useEffect(() => {
     axios
@@ -28,13 +32,27 @@ function Playlist() {
       .catch((err) => console.error(err));
   }, []);
 
-  console.log("TÁ CHEGANU?", musicXpandListApi);
-  console.log("AQUIIIIIIIIIIII", musicXpandListApi.albumName);
+  function deleteSong(event) {
+    let index = event.target.value;
+    console.log(index);
+    const idDeleteSong = musicXpandListApi[index]._id;
+   
+    // Antes de prosseguir com a deleção, pedimos a confirmação do usuário
+    const areYouSure = window.confirm(
+      "Você tem certeza que deseja deletar esta música?"
+    );
+    if (areYouSure) {
+      return axios
+        .delete(`https://ironrest.herokuapp.com/musicxpand/${idDeleteSong}`)
+        .then((response) => {})
+        .catch((err) => console.error(err));
+    }
+  }
 
   return (
     <div className="container">
       {/* <CreatePlaylistCoverName /> */}
-      {musicXpandListApi.map((current) => {
+      {musicXpandListApi.map((current, index) => {
         return (
           <div className="list-group">
             <li
@@ -42,28 +60,35 @@ function Playlist() {
               aria-current="true"
             >
               <img
-                src={musicXpandListApi.albumCover}
+                src={current.albumCover}
                 alt="twbs"
                 width="50"
                 height="50"
                 className="rounded-circle flex-shrink-0"
               />
               <div className="d-flex gap-2 w-100 justify-content-evenly align-items-center align-self-center">
-                <h5 className="mb-0 fw-bold">{musicXpandListApi.songName}</h5>
-                {/* <h5 className="mb-0 opacity-75">
-                  {musicXpandListApi.artistName.map((current) => {
+                <h5 className="mb-0 fw-bold">{current.songName}</h5>
+                <h5 className="mb-0 opacity-75">
+                  {current.artistName.map((current) => {
                     return current.name;
                   })}
-                </h5> */}
+                </h5>
                 <h5 className="mb-0 opacity-50 fw-light">
-                  {musicXpandListApi.albumName}
+                  {current.albumName}
                 </h5>
                 <audio
                   className="opacity-50 text-nowrap"
                   controls
-                  src={musicXpandListApi.preview_url}
+                  src={current.musicPreview}
                 ></audio>
-                <h4>DELETE</h4>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary"
+                  value={index}
+                  onClick={deleteSong}
+                >
+                  DELETE
+                </button>
               </div>
             </li>
           </div>

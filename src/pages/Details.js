@@ -7,7 +7,12 @@ const spotifyApi = new SpotifyWebApi();
 function Details(props) {
   const { id } = useParams();
   const [state, setState] = useState([]);
-  const [artist, setArtist] = useState([]);
+  const [artist, setArtist] = useState({
+    id: '',
+    images: [{
+      url: '',
+    }]
+  });
   const [topTracks, setTopTracks] = useState([]);
 
   useEffect(() => {
@@ -23,7 +28,7 @@ function Details(props) {
     spotifyApi.getArtist(id).then(
       function (data) {
         console.log("Artist information", data);
-        setArtist([...data.images]);
+        setArtist({...data});
       },
       function (err) {
         console.error(err);
@@ -50,12 +55,7 @@ function Details(props) {
 
   return (
     <div className="bg-dark">
-      {artistCoverImgShow()}
-      {/* {artist.map((current, index) => {
-        return index === 0 ? (
-          <img src={current.url} className="img-fluid" alt="" />
-        ) : undefined;
-      })} */}
+      <img src={artist.images[0].url} className="img-fluid" alt="" />
       <div className="tracks">
         <img src="" className="img-fluid" alt="" />
         <div className="container">
@@ -126,3 +126,8 @@ function Details(props) {
 }
 
 export default Details;
+
+// {artist.map((current, index) => {
+//   return index === 0 ? (
+//     <img src={current.url} className="img-fluid" alt="" />
+//   ) : undefined;
