@@ -40,13 +40,22 @@ function Details(props) {
     );
   }, [props.token, id]);
 
+  function artistCoverImgShow() {
+    if (artist.images) {
+      return <img src={artist.images[0].url} className="img-fluid" alt="" />;
+    } else {
+      return undefined;
+    }
+  }
+
   return (
     <div className="bg-dark">
-      {artist.map((current, index) => {
+      {artistCoverImgShow()}
+      {/* {artist.map((current, index) => {
         return index === 0 ? (
           <img src={current.url} className="img-fluid" alt="" />
         ) : undefined;
-      })}
+      })} */}
       <div className="tracks">
         <img src="" className="img-fluid" alt="" />
         <div className="container">
