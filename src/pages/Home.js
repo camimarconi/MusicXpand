@@ -24,15 +24,17 @@ function Home() {
           <main>
             <h1 className="m-5 display-1">Discover New Music</h1>
             <div className="p-layout">
-            <p className="fs-5">
+            <p className="fs-5 home-text">
               Look up for words to find new artists,
             </p>
-            <p class="col lead main-text">
+            <div className="p-layout">
+            <p class="fs-5 home-text">
               musical genres and songs based on what you've searched.
             </p>
             </div>
+            </div>
             <div className="p-layout">
-            <p className="fs-5">
+            <p className="fs-5 home-text">
               You can add your favorite songs to a personalized playlist.
             </p>
             </div>
@@ -43,7 +45,7 @@ function Home() {
               <div>
                 <button
                   type="submit"
-                  className="btn btn-lg btn-secondary fw-bold border-white bg-white mt-5"
+                  className="btn btn-lg btn-secondary mt-5"
                   onClick={() => navigate(`/search/${state}`)}
                 >
                   Discover

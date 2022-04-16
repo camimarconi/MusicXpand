@@ -8,10 +8,12 @@ function Details(props) {
   const { id } = useParams();
   const [state, setState] = useState([]);
   const [artist, setArtist] = useState({
-    id: '',
-    images: [{
-      url: '',
-    }]
+    id: "",
+    images: [
+      {
+        url: "",
+      },
+    ],
   });
   const [topTracks, setTopTracks] = useState([]);
 
@@ -28,7 +30,7 @@ function Details(props) {
     spotifyApi.getArtist(id).then(
       function (data) {
         console.log("Artist information", data);
-        setArtist({...data});
+        setArtist({ ...data });
       },
       function (err) {
         console.error(err);
@@ -68,9 +70,9 @@ function Details(props) {
             />
             <h2 className="result d-flex flex-row">Top Tracks</h2>
           </div>
-          {topTracks.map((current) => {
+          {topTracks.map((current, index) => {
             return (
-              <div className="list-grou m-1">
+              <div className="list-grou m-1" key={index}>
                 <li
                   className="list-group-item list-group-item-action d-flex flex-row"
                   aria-current="true"
