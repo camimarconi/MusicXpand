@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/playlistStyle.css";
 import axios from "axios";
-// import SpotifyWebApi from "spotify-web-api-js";
-// import CreatePlaylistCoverName
+import CreatePlaylistCoverName from "../components/CreatePlaylistCoverName";
 
 // const spotifyApi = new SpotifyWebApi();
 
@@ -20,6 +19,30 @@ function Playlist() {
   ]);
   // const [albumDataFromSpotifyApi, setAlbumDataFromSpotifyApi] = useState([]);
 
+  const [onlyMusicMXApi, setOnlyMusicMXApi] = useState([]);
+
+  let coverInfo;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  function getOnlyMusic(arr) {
+    let onlyMusicList = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].albumCover !== undefined) {
+        onlyMusicList.push(arr[i]);
+      } else {
+        coverInfo = arr[i];
+      }
+    }
+    return onlyMusicList;
+  }
+  console.log("Cover Info", coverInfo);
+
+  // function getOnlyMusic(arr) {
+  //   const onlyMusic = arr.filter(
+  //     (element) => (element || {}).albumCover !== undefined
+  //   ); //não deixa quebrar (element||{}) pq ele pega um obj vazio e não deixa quebrar
+  // }
+
   useEffect(() => {
     axios
       .get("https://ironrest.herokuapp.com/musicxpand/")
@@ -27,8 +50,13 @@ function Playlist() {
         setMusicXpandListApi(response.data);
       })
       .catch((err) => console.error(err));
-  }, [deleteSong]);
+  }, []);
 
+  useEffect(() => {
+    let response = getOnlyMusic(musicXpandListApi);
+    setOnlyMusicMXApi(response);
+  }, [getOnlyMusic, musicXpandListApi]);
+  console.log(musicXpandListApi);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function deleteSong(event) {
     let index = event.target.value;
@@ -41,14 +69,20 @@ function Playlist() {
     if (areYouSure) {
       return axios
         .delete(`https://ironrest.herokuapp.com/musicxpand/${idDeleteSong}`)
-        .then((response) => {})
+        .then((response) => {
+          window.location.reload();
+        })
         .catch((err) => console.error(err));
     }
   }
+  console.log(musicXpandListApi);
 
   return (
     <div>
       <div className="bg-dark">
+        <div className="container">
+          <CreatePlaylistCoverName />
+        </div>
         <div className="container">
           <div className="main-wrapper">
             {musicXpandListApi.map((current, index) => {
@@ -70,10 +104,10 @@ function Playlist() {
                           <h5 className="mb-0 song-name">{current.songName}</h5>
                         </div>
                         <div className="col-2 align-self-center">
-                          {current.artistName.map((current) => {
+                          {current.artistName.map((currentName) => {
                             return (
                               <h5 className="mb-0 opacity-75">
-                                {current.name}
+                                {currentName.name}
                               </h5>
                             );
                           })}

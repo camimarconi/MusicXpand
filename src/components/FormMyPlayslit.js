@@ -1,7 +1,9 @@
-function FormMyPlayslit(props) {
+function FormMyPlaylist(props) {
   return (
-    <div className="mb-5">
-      <h2>{props.label}</h2>
+    <div className="mb-3">
+      <label htmlFor={props.id} className="form-label">
+        {props.label}
+      </label>
       <input
         id={props.id}
         className="form-control"
@@ -14,4 +16,4 @@ function FormMyPlayslit(props) {
   );
 }
 
-export default FormMyPlayslit;
+export default FormMyPlaylist;
