@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import FormMyPlaylist from "./FormMyPlayslit";
+import CoverNamePlaylistDone from "./CoverNamePlaylistDone";
 
 function CreatePlaylistCoverName() {
   const [userData, setuserData] = useState({
@@ -23,13 +24,20 @@ function CreatePlaylistCoverName() {
       .catch((err) => console.error(err));
   }
   console.log(userData.coverUser);
+
+  // function showNotShow() {
+  //   if ((<CreatePlaylistCoverName />))
+  //     return (
+  //       <CoverNamePlaylistDone /> &&
+  //       CreatePlaylistCoverName.style.display === "none"
+  //     );
+  // }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <div className="custom-file">
           <FormMyPlaylist
-            label="My Playlist's Cover"
-            htmlFor="inputGroupFile01"
             id="userCreateCover"
             name="coverUser"
             onChange={handleChange}
@@ -38,15 +46,28 @@ function CreatePlaylistCoverName() {
           />
         </div>
 
-        <FormMyPlaylist
-          label="My Playlist's Name"
-          id="userCreateName"
-          name="namePlaylistUser"
-          onChange={handleChange}
-          value={userData.namePlaylistUser}
-          type="text"
-        />
+        <div className="mb-3">
+          <FormMyPlaylist
+            placeholder="My Playlist's name"
+            id="userCreateName"
+            name="namePlaylistUser"
+            onChange={handleChange}
+            value={userData.namePlaylistUser}
+            type="text"
+          />
+          <div>
+            <button
+              className="btn btn-outline-secondary mb-3"
+              type="submit"
+              id="button"
+              // onClick={}
+            >
+              Button
+            </button>
+          </div>
+        </div>
       </form>
+      <CoverNamePlaylistDone />
     </div>
   );
 }

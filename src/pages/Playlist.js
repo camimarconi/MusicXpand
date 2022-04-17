@@ -19,44 +19,44 @@ function Playlist() {
   ]);
   // const [albumDataFromSpotifyApi, setAlbumDataFromSpotifyApi] = useState([]);
 
-  const [onlyMusicMXApi, setOnlyMusicMXApi] = useState([]);
+  // const [onlyMusicMXApi, setOnlyMusicMXApi] = useState([]);
 
-  let coverInfo;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  function getOnlyMusic(arr) {
-    let onlyMusicList = [];
-
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i].albumCover !== undefined) {
-        onlyMusicList.push(arr[i]);
-      } else {
-        coverInfo = arr[i];
-      }
-    }
-    return onlyMusicList;
-  }
-  console.log("Cover Info", coverInfo);
-
+  // let coverInfo;
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
   // function getOnlyMusic(arr) {
-  //   const onlyMusic = arr.filter(
-  //     (element) => (element || {}).albumCover !== undefined
-  //   ); //não deixa quebrar (element||{}) pq ele pega um obj vazio e não deixa quebrar
+  //   let onlyMusicList = [];
+
+  //   for (let i = 0; i < arr.length; i++) {
+  //     if (arr[i].albumCover !== undefined) {
+  //       onlyMusicList.push(arr[i]);
+  //     } else {
+  //       coverInfo = arr[i];
+  //     }
+  //   }
+  //   return onlyMusicList;
   // }
+  // console.log("Cover Info", coverInfo);
 
-  useEffect(() => {
-    axios
-      .get("https://ironrest.herokuapp.com/musicxpand/")
-      .then((response) => {
-        setMusicXpandListApi(response.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  // // function getOnlyMusic(arr) {
+  // //   const onlyMusic = arr.filter(
+  // //     (element) => (element || {}).albumCover !== undefined
+  // //   ); //não deixa quebrar (element||{}) pq ele pega um obj vazio e não deixa quebrar
+  // // }
 
-  useEffect(() => {
-    let response = getOnlyMusic(musicXpandListApi);
-    setOnlyMusicMXApi(response);
-  }, [getOnlyMusic, musicXpandListApi]);
-  console.log(musicXpandListApi);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://ironrest.herokuapp.com/musicxpand/")
+  //     .then((response) => {
+  //       setMusicXpandListApi(response.data);
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
+
+  // useEffect(() => {
+  //   let response = getOnlyMusic(musicXpandListApi);
+  //   setOnlyMusicMXApi(response);
+  // }, [getOnlyMusic, musicXpandListApi]);
+  // console.log(musicXpandListApi);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function deleteSong(event) {
     let index = event.target.value;
@@ -87,7 +87,7 @@ function Playlist() {
           <div className="main-wrapper">
             {musicXpandListApi.map((current, index) => {
               return (
-                <div className="container main-container">
+                <div key={index} className="container main-container">
                   <div className="row main-row">
                     <div className="col-12 align-center">
                       <div className="row p-2">
