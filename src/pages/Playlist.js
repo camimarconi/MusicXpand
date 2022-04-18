@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/playlistStyle.css";
 import axios from "axios";
+
 // import SpotifyWebApi from "spotify-web-api-js";
 // import CreatePlaylistCoverName
 
@@ -27,6 +28,8 @@ function Playlist(props) {
   const contador = props.counter;
   const setContador = props.setCounter;
 
+  const [showResults, setShowResults] = useState(false);
+
   useEffect(() => {
     axios
       .get("https://ironrest.herokuapp.com/musicxpand/")
@@ -34,11 +37,10 @@ function Playlist(props) {
         setMusicXpandListApi(response.data);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [showResults]);
 
   function deleteSong(event) {
     let id = event.currentTarget.value;
-    // const found = musicXpandListApi.find(element => element._id === id);
 
     const areYouSure = window.confirm(
       "Você tem certeza que deseja deletar esta música?"
@@ -84,6 +86,10 @@ function Playlist(props) {
       })
       .then((response) => {
         console.log(response.data);
+        setShowResults(true);
+        if (showResults === true) {
+          window.location.reload();
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -112,6 +118,8 @@ function Playlist(props) {
   console.log("!!!!!!!! is music", isMusic);
   console.log("!!!!!!!! is playlist", isPlaylist);
 
+  console.log(isPlaylist);
+
   return (
     <div>
       <div className="bg-dark">
@@ -123,7 +131,7 @@ function Playlist(props) {
                 name="coverUser"
                 value={coverUser}
                 onChange={CreateCover}
-                type="file"
+                type="text"
               />
             </div>
 
@@ -146,11 +154,43 @@ function Playlist(props) {
                   Button
                 </button>
               </div>
-              <h2 className="result d-flex flex-row">Playlist</h2>
-            </div>
-          </form>
+              </div>
+              </form>
+              <div>
+                {isPlaylist.map((current) => {
+                  return (
+                    <div>
+                      <div className="d-flex flex-row playlist-layout container main-container">
+                        <img
+                          src={current.coverUser}
+                          alt="twbs"
+                          width="100"
+                          height="100"
+                          className="rounded-circle flex-shrink-0"
+                        />
+                        <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
+                          <h2 className="playlist-name m-3 text-sm-center">
+                            {current.namePlaylistUser}
+                          </h2>
+                        </div>
+                        <div className="col-md-2 col-sm-12 align-self-center text-sm-center details-xs">
+                          <button
+                            type="button"
+                            className="btn btn-block btn-delete justify-content-start"
+                            value=""
+                            onClick=""
+                          >
+                            <i className="bi bi-pen-fill"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              {/* <h2 className="result d-flex flex-row">Playlist</h2> */}
           <div className="main-wrapper">
-            {isMusic.map((current) => {
+            {musicXpandListApi.map((current) => {
               console.log("current do map", current);
               return (
                 <div className="container main-container" key={current._id}>
@@ -170,13 +210,13 @@ function Playlist(props) {
                           <h5 className="mb-0">{current.songName}</h5>
                         </div>
                         <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
-                          {current.artistName.map((currentArtist) => {
+                          {/* {current.artistName.map((currentArtist) => {
                             return (
                               <h5 className="mb-0 opacity-75">
                                 {currentArtist.name}
                               </h5>
                             );
-                          })}
+                          })} */}
                         </div>
                         <div className="col-md-2 col-sm-12 opacity-75 align-self-center text-sm-center m-2 details-xs">
                           <h5 className="album-name mb-0">
