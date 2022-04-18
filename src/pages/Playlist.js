@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/playlistStyle.css";
 import axios from "axios";
+import UserData from "../components/UserData";
+import ShowPostAndEdit from "../components/ShowPostAndEdit";
 
 // const spotifyApi = new SpotifyWebApi();
 
@@ -88,10 +90,6 @@ function Playlist(props) {
       });
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
-
   const isMusic = [];
   const isPlaylist = [];
 
@@ -110,43 +108,22 @@ function Playlist(props) {
   console.log("!!!!!!!! is music", isMusic);
   console.log("!!!!!!!! is playlist", isPlaylist);
 
+  // function whatToRender() {
+  //   if (coverUser || namePlaylistUser === true) {
+  //     <UserData /> === null && <ShowPostAndEdit />;
+  //   }
+  // }
+
   return (
     <div>
       <div className="bg-dark">
         <div className="container">
-          <form onSubmit={handleSubmit}>
-            <div className="custom-file">
-              <input
-                id="userCreateCover"
-                name="coverUser"
-                value={coverUser}
-                onChange={CreateCover}
-                type="file"
-              />
-            </div>
-
-            <div className="mb-3">
-              <input
-                placeholder="My Playlist's name"
-                id="userCreateName"
-                name="namePlaylistUser"
-                value={namePlaylistUser}
-                onChange={CreatePlaylistName}
-                type="text"
-              />
-              <div>
-                <button
-                  className="btn btn-outline-secondary mb-3"
-                  type="submit"
-                  id="button"
-                  onClick={PostInApi}
-                >
-                  Button
-                </button>
-              </div>
-              <h2 className="result d-flex flex-row">Playlist</h2>
-            </div>
-          </form>
+          {coverUser || namePlaylistUser ? <ShowPostAndEdit /> : <UserData />}
+          <ShowPostAndEdit
+            className="img-thumbnail"
+            src={coverUser}
+            alt="foto"
+          />
           <div className="main-wrapper">
             {isMusic.map((current) => {
               console.log("current do map", current);
