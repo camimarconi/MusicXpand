@@ -9,14 +9,15 @@ const spotifyApi = new SpotifyWebApi();
 
 function Search(props) {
   const { keyword } = useParams();
-
   console.log(keyword);
 
   const [search, setSearch] = useState([]);
-
   console.log(search);
 
   const navigate = useNavigate();
+
+  const contador = props.counter;
+  const setContador = props.setCounter;
 
   useEffect(() => {
     spotifyApi.searchTracks(keyword).then(
@@ -33,13 +34,14 @@ function Search(props) {
   function addSong(event) {
     //capturar o id que está no search
     // newList ser vinculada com o state do com ponente Playlist
-    let index = event.target.value;
+    let index = event.currentTarget.value;
     console.log(search[index]);
     const albumCover = search[index].album.images[0].url;
     const songName = search[index].name;
     const artistName = search[index].artists;
     const albumName = search[index].album.name;
     const musicPreview = search[index].preview_url;
+    const musicId = search[index].id;
 
     axios
       .post("https://ironrest.herokuapp.com/musicxpand", {
@@ -48,9 +50,19 @@ function Search(props) {
         artistName: artistName,
         albumName: albumName,
         musicPreview: musicPreview,
+        musicId: musicId,
+        coverUser: "",
+        namePlaylistUser: "",
       })
       .then((response) => {
         console.log(response.data); //NOTIFICAÇÃO
+        axios
+          .get("https://ironrest.herokuapp.com/musicxpand/")
+          .then((response) => {
+            setContador(response.data.length);
+            console.log(contador);
+          })
+          .catch((err) => console.error(err));
       })
       .catch((error) => {
         console.error(error);
@@ -65,7 +77,7 @@ function Search(props) {
           return (
             <div
               key={index}
-              className="card mt-5 d-flex flex-col mb-4"
+              className="card mt-5 d-flex flex-col mb-4 text-center"
               style={{ width: "21rem" }}
             >
               <div className="card-body col align-self-center">
@@ -82,14 +94,18 @@ function Search(props) {
                 {/* <p className="card-text">{current.artists[0].external_urls.spotify}</p> */}
 
                 <div className="align-self-end">
-                  <audio controls src={current.preview_url}></audio>
+                  <audio
+                    className="audio-layout"
+                    controls
+                    src={current.preview_url}
+                  ></audio>
                   <button
                     className="btn btn-discovery col"
                     // value={current.album.id}
                     value={index}
                     onClick={addSong}
                   >
-                    Add
+                    <i className="bi bi-heart-fill"></i>
                   </button>
                   <button
                     className="btn btn-details col"
@@ -97,7 +113,7 @@ function Search(props) {
                       navigate(`/details/${current.artists[0].id}`)
                     }
                   >
-                    Details
+                    <i className="bi bi-search-heart-fill"></i>
                   </button>
                 </div>
               </div>
