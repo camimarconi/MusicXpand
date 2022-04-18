@@ -18,7 +18,6 @@ function App() {
   const [counter, setCounter] =  useState(0)
 
 
-
   // Retrieve an access token
   useEffect(() => {
     axios
@@ -45,7 +44,7 @@ function App() {
       axios
       .get("https://ironrest.herokuapp.com/musicxpand/")
       .then((response) => {
-        
+        console.log(response.data)
         setCounter(response.data.length);
         console.log(counter)
       })

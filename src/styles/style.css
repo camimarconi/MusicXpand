@@ -150,3 +150,7 @@ audio::-webkit-media-controls-panel {
   border-radius: 10px;
   
 }
+
+.playlist-name {
+  color: white;
+}
