@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../styles/style.css";
 
-function Navbar() {
+
+function Navbar(props) {
+
+ const contador = props.counter
+ console.log(contador)
+
   return (
     <div className="d-flex h-100 text-center text-white bg-dark">
       <div className="d-flex w-100 h-100 p-3 mx-auto flex-column">
@@ -14,10 +19,10 @@ function Navbar() {
               </Link>
               <Link className="nav-link" to="/playlist">
                 {/* <span className="badge bg-primary rounded-pill">{}</span> */}
-                Playlists
+                Playlists <span className="badge badge-pill">{contador}</span>
               </Link>
               <Link className="nav-link" to="#">
-                Favorites
+                About Us
               </Link>
             </nav>
           </div>

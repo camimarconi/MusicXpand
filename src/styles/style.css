@@ -4,11 +4,11 @@
 
 /* Custom default button */
 
-body {
-  min-height: 100vh;
+@media (min-width: 50px) {
+  .text-sm-center {
+    text-align: center !important;
+  }
 }
-
-
 
 .btn-secondary,
 .btn-secondary:hover,
@@ -62,7 +62,7 @@ body {
 }  */
 
 .home-text {
-  font-family: 'Open Sans';
+  font-size: 18px;
 }
 
 .feature-icon {
@@ -106,19 +106,19 @@ body {
   margin-bottom: 10px;
 }
 
-.player {
-  width: 11rem;
-  height: 2rem;
+.btn-listen {
+  background-color: rgb(116, 68, 156);
+  color: white;
 }
 
 .btn-delete {
-  margin-left: 3rem;
   background-color: rgb(242, 38, 113);
   color: white;
 }
 
-.song-name {
- margin-left: -3rem;
+.btn-listen {
+  background-color: rgb(116, 68, 156);
+  color: white;
 }
 
 .image-cover {
@@ -131,8 +131,22 @@ body {
 
 .album-name {
   font-size: 1rem;
-  margin-left: -1rem;
-  
 }
 
+.audio-layout {
+  height: 2rem;
+  margin-top: 5px;
+  margin-bottom: 7px;
+}
 
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-panel {
+  background-color: rgb(242, 38, 113);
+
+}
+
+.badge {
+  background-color: #f33c7f;
+  border-radius: 10px;
+  
+}
