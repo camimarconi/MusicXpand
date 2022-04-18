@@ -15,7 +15,12 @@ const spotifyApi = new SpotifyWebApi();
 
 function App() {
   const [state, setState] = useState("");
+<<<<<<< HEAD
   const [counter, setCounter] = useState(0);
+=======
+  const [counter, setCounter] =  useState(0)
+
+>>>>>>> b0aa04ee718b6a8e7a0f39c2f5af22c4834a0fb9
 
   // Retrieve an access token
   useEffect(() => {
@@ -43,6 +48,10 @@ function App() {
     axios
       .get("https://ironrest.herokuapp.com/musicxpand/")
       .then((response) => {
+<<<<<<< HEAD
+=======
+        console.log(response.data)
+>>>>>>> b0aa04ee718b6a8e7a0f39c2f5af22c4834a0fb9
         setCounter(response.data.length);
         console.log(counter);
       })

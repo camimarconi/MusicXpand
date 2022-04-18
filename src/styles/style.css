@@ -147,4 +147,12 @@ audio::-webkit-media-controls-panel {
 .badge {
   background-color: #f33c7f;
   border-radius: 10px;
+<<<<<<< HEAD
+=======
+  
+}
+
+.playlist-name {
+  color: white;
+>>>>>>> b0aa04ee718b6a8e7a0f39c2f5af22c4834a0fb9
 }
