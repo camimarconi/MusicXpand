@@ -5,7 +5,7 @@ import axios from "axios";
 
 // const spotifyApi = new SpotifyWebApi();
 
-function Playlist() {
+function Playlist(props) {
   const [musicXpandListApi, setMusicXpandListApi] = useState([
     {
       albumCover: "",
@@ -13,14 +13,17 @@ function Playlist() {
       artistName: [{ name: "" }],
       albumName: "",
       musicPreview: "",
+      musicId: "",
       _id: "",
       coverUser: "",
       namePlaylistUser: "",
     },
   ]);
+  // const [albumDataFromSpotifyApi, setAlbumDataFromSpotifyApi] = useState([]);
+  console.log("Array de musicas", musicXpandListApi);
 
-  const [coverUser, setCoverUser] = useState("");
-  const [namePlaylistUser, setNamePlaylistUser] = useState("");
+  const contador = props.counter;
+  const setContador = props.setCounter;
 
   useEffect(() => {
     axios
@@ -31,24 +34,32 @@ function Playlist() {
       .catch((err) => console.error(err));
   }, []);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   function deleteSong(event) {
-    let index = event.target.value;
-    const idDeleteSong = musicXpandListApi[index]._id;
+    let id = event.currentTarget.value;
+    // const found = musicXpandListApi.find(element => element._id === id);
 
-    // Antes de prosseguir com a deleção, pedimos a confirmação do usuário
     const areYouSure = window.confirm(
       "Você tem certeza que deseja deletar esta música?"
     );
     if (areYouSure) {
       return axios
-        .delete(`https://ironrest.herokuapp.com/musicxpand/${idDeleteSong}`)
+        .delete(`https://ironrest.herokuapp.com/musicxpand/${id}`)
         .then((response) => {
           window.location.reload();
+          axios
+            .get("https://ironrest.herokuapp.com/musicxpand/")
+            .then((response) => {
+              setContador(response.data.length);
+              console.log(contador);
+            })
+            .catch((err) => console.error(err));
         })
         .catch((err) => console.error(err));
     }
   }
+
+  const [coverUser, setCoverUser] = useState("");
+  const [namePlaylistUser, setNamePlaylistUser] = useState("");
 
   function CreateCover(event) {
     setCoverUser(event.currentTarget.value);
@@ -81,8 +92,23 @@ function Playlist() {
     event.preventDefault();
   }
 
-  console.log("COVER USER", coverUser);
-  console.log("PLAYLIST NAME", namePlaylistUser);
+  const isMusic = [];
+  const isPlaylist = [];
+
+  function filterByType(object) {
+    if (
+      ("coverUser" in object && isNaN(object.coverUser)) ||
+      ("namePlaylistUser" in object && isNaN(object.namePlaylistUser))
+    ) {
+      isPlaylist.push(object);
+    } else {
+      isMusic.push(object);
+    }
+  }
+
+  musicXpandListApi.filter(filterByType);
+  console.log("!!!!!!!! is music", isMusic);
+  console.log("!!!!!!!! is playlist", isPlaylist);
 
   return (
     <div>
@@ -118,18 +144,18 @@ function Playlist() {
                   Button
                 </button>
               </div>
+              <h2 className="result d-flex flex-row">Playlist</h2>
             </div>
           </form>
-        </div>
-        <div className="container">
           <div className="main-wrapper">
-            {musicXpandListApi.map((current, index) => {
+            {isMusic.map((current) => {
+              console.log("current do map", current);
               return (
-                <div key={index} className="container main-container">
+                <div className="container main-container" key={current._id}>
                   <div className="row main-row">
                     <div className="col-12 align-center">
-                      <div className="row p-2">
-                        <div className="col-2 align-middle align-self-center image-cover">
+                      <div className="row p-2 justify-content-sm-between text-sm-center details-xs">
+                        <div className="col-md-2 align-middle align-self-center image-cover text-sm-center details-xs">
                           <img
                             src={current.albumCover}
                             alt="twbs"
@@ -138,40 +164,44 @@ function Playlist() {
                             className="rounded-circle flex-shrink-0 "
                           />
                         </div>
-                        <div className="col-2 align-self-center">
-                          <h5 className="mb-0 song-name">{current.songName}</h5>
+                        <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
+                          <h5 className="mb-0">{current.songName}</h5>
                         </div>
-                        <div className="col-2 align-self-center">
-                          {current.artistName.map((currentName) => {
+                        <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
+                          {current.artistName.map((currentArtist) => {
                             return (
                               <h5 className="mb-0 opacity-75">
-                                {currentName.name}
+                                {currentArtist.name}
                               </h5>
                             );
                           })}
                         </div>
-                        <div className="col-2 opacity-75 align-self-center">
+                        <div className="col-md-2 col-sm-12 opacity-75 align-self-center text-sm-center m-2 details-xs">
                           <h5 className="album-name mb-0">
                             {current.albumName}
                           </h5>
                         </div>
 
-                        <div className="col-2 align-self-center">
-                          <audio
-                            className="player opacity-50 text-nowrap"
-                            controls
-                            src={current.musicPreview}
-                          ></audio>
-                        </div>
-
-                        <div className="col-2 align-self-center">
+                        <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
                           <button
                             type="button"
-                            className="btn btn-block btn-delete"
-                            value={index}
+                            className="btn btn-block btn-listen m-1"
+                            value={current._id}
+                            onClick={() => {
+                              window.open(
+                                `https://open.spotify.com/track/${current.musicId}`
+                              );
+                            }}
+                          >
+                            <i className="bi bi-play-circle-fill"></i>
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-block btn-delete m-1"
+                            value={current._id}
                             onClick={deleteSong}
                           >
-                            Delete
+                            <i className="bi bi-trash3-fill"></i>
                           </button>
                         </div>
                       </div>

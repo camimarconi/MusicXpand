@@ -9,11 +9,13 @@ import qs from "qs";
 import Search from "../pages/Search";
 import Playlist from "../pages/Playlist";
 import Details from "../pages/Details";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const spotifyApi = new SpotifyWebApi();
 
 function App() {
   const [state, setState] = useState("");
+  const [counter, setCounter] = useState(0);
 
   // Retrieve an access token
   useEffect(() => {
@@ -38,6 +40,13 @@ function App() {
       .catch((err) => {
         console.error(err);
       });
+    axios
+      .get("https://ironrest.herokuapp.com/musicxpand/")
+      .then((response) => {
+        setCounter(response.data.length);
+        console.log(counter);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   // useEffect(() => {
@@ -53,13 +62,27 @@ function App() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar counter={counter} />
 
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/search/:keyword" element={<Search token={state} />} />
-          <Route path="/playlist/" element={<Playlist token={state} />} />
+          <Route
+            path="/search/:keyword"
+            element={
+              <Search token={state} counter={counter} setCounter={setCounter} />
+            }
+          />
+          <Route
+            path="/playlist/"
+            element={
+              <Playlist
+                token={state}
+                counter={counter}
+                setCounter={setCounter}
+              />
+            }
+          />
           <Route path="/details/:id" element={<Details token={state} />} />
         </Routes>
       </div>
