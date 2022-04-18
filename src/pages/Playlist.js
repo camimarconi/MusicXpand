@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/playlistStyle.css";
 import axios from "axios";
-import CreatePlaylistCoverName from "../components/CreatePlaylistCoverName";
 
 // const spotifyApi = new SpotifyWebApi();
 
@@ -15,48 +14,23 @@ function Playlist() {
       albumName: "",
       musicPreview: "",
       _id: "",
+      coverUser: "",
+      namePlaylistUser: "",
     },
   ]);
-  // const [albumDataFromSpotifyApi, setAlbumDataFromSpotifyApi] = useState([]);
 
-  // const [onlyMusicMXApi, setOnlyMusicMXApi] = useState([]);
+  const [coverUser, setCoverUser] = useState("");
+  const [namePlaylistUser, setNamePlaylistUser] = useState("");
 
-  // let coverInfo;
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // function getOnlyMusic(arr) {
-  //   let onlyMusicList = [];
+  useEffect(() => {
+    axios
+      .get("https://ironrest.herokuapp.com/musicxpand/")
+      .then((response) => {
+        setMusicXpandListApi(response.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
-  //   for (let i = 0; i < arr.length; i++) {
-  //     if (arr[i].albumCover !== undefined) {
-  //       onlyMusicList.push(arr[i]);
-  //     } else {
-  //       coverInfo = arr[i];
-  //     }
-  //   }
-  //   return onlyMusicList;
-  // }
-  // console.log("Cover Info", coverInfo);
-
-  // // function getOnlyMusic(arr) {
-  // //   const onlyMusic = arr.filter(
-  // //     (element) => (element || {}).albumCover !== undefined
-  // //   ); //não deixa quebrar (element||{}) pq ele pega um obj vazio e não deixa quebrar
-  // // }
-
-  // useEffect(() => {
-  //   axios
-  //     .get("https://ironrest.herokuapp.com/musicxpand/")
-  //     .then((response) => {
-  //       setMusicXpandListApi(response.data);
-  //     })
-  //     .catch((err) => console.error(err));
-  // }, []);
-
-  // useEffect(() => {
-  //   let response = getOnlyMusic(musicXpandListApi);
-  //   setOnlyMusicMXApi(response);
-  // }, [getOnlyMusic, musicXpandListApi]);
-  // console.log(musicXpandListApi);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function deleteSong(event) {
     let index = event.target.value;
@@ -75,13 +49,77 @@ function Playlist() {
         .catch((err) => console.error(err));
     }
   }
-  console.log(musicXpandListApi);
+
+  function CreateCover(event) {
+    setCoverUser(event.currentTarget.value);
+  }
+
+  function CreatePlaylistName(event) {
+    setNamePlaylistUser(event.currentTarget.value);
+  }
+
+  function PostInApi(event) {
+    axios
+      .post("https://ironrest.herokuapp.com/musicxpand", {
+        albumCover: "",
+        songName: "",
+        artistName: "",
+        albumName: "",
+        musicPreview: "",
+        coverUser: coverUser,
+        namePlaylistUser: namePlaylistUser,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
+  console.log("COVER USER", coverUser);
+  console.log("PLAYLIST NAME", namePlaylistUser);
 
   return (
     <div>
       <div className="bg-dark">
         <div className="container">
-          <CreatePlaylistCoverName />
+          <form onSubmit={handleSubmit}>
+            <div className="custom-file">
+              <input
+                id="userCreateCover"
+                name="coverUser"
+                value={coverUser}
+                onChange={CreateCover}
+                type="file"
+              />
+            </div>
+
+            <div className="mb-3">
+              <input
+                placeholder="My Playlist's name"
+                id="userCreateName"
+                name="namePlaylistUser"
+                value={namePlaylistUser}
+                onChange={CreatePlaylistName}
+                type="text"
+              />
+              <div>
+                <button
+                  className="btn btn-outline-secondary mb-3"
+                  type="submit"
+                  id="button"
+                  onClick={PostInApi}
+                >
+                  Button
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
         <div className="container">
           <div className="main-wrapper">

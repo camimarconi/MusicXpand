@@ -48,6 +48,8 @@ function Search(props) {
         artistName: artistName,
         albumName: albumName,
         musicPreview: musicPreview,
+        coverUser: "",
+        namePlaylistUser: "",
       })
       .then((response) => {
         console.log(response.data); //NOTIFICAÇÃO
