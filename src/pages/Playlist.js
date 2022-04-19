@@ -2,14 +2,9 @@ import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/playlistStyle.css";
 import axios from "axios";
-<<<<<<< HEAD
-import UserData from "../components/UserData";
-import ShowPostAndEdit from "../components/ShowPostAndEdit";
-=======
 
 // import SpotifyWebApi from "spotify-web-api-js";
 // import CreatePlaylistCoverName
->>>>>>> b0aa04ee718b6a8e7a0f39c2f5af22c4834a0fb9
 
 // const spotifyApi = new SpotifyWebApi();
 
@@ -101,6 +96,10 @@ function Playlist(props) {
       });
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
   const isMusic = [];
   const isPlaylist = [];
 
@@ -119,28 +118,12 @@ function Playlist(props) {
   console.log("!!!!!!!! is music", isMusic);
   console.log("!!!!!!!! is playlist", isPlaylist);
 
-<<<<<<< HEAD
-  // function whatToRender() {
-  //   if (coverUser || namePlaylistUser === true) {
-  //     <UserData /> === null && <ShowPostAndEdit />;
-  //   }
-  // }
-=======
   console.log(isPlaylist);
->>>>>>> b0aa04ee718b6a8e7a0f39c2f5af22c4834a0fb9
 
   return (
     <div>
       <div className="bg-dark">
         <div className="container">
-<<<<<<< HEAD
-          {coverUser || namePlaylistUser ? <ShowPostAndEdit /> : <UserData />}
-          <ShowPostAndEdit
-            className="img-thumbnail"
-            src={coverUser}
-            alt="foto"
-          />
-=======
           <form onSubmit={handleSubmit}>
             <div className="custom-file">
               <input
@@ -171,42 +154,41 @@ function Playlist(props) {
                   Button
                 </button>
               </div>
-              </div>
-              </form>
-              <div>
-                {isPlaylist.map((current) => {
-                  return (
-                    <div>
-                      <div className="d-flex flex-row playlist-layout container main-container">
-                        <img
-                          src={current.coverUser}
-                          alt="twbs"
-                          width="100"
-                          height="100"
-                          className="rounded-circle flex-shrink-0"
-                        />
-                        <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
-                          <h2 className="playlist-name m-3 text-sm-center">
-                            {current.namePlaylistUser}
-                          </h2>
-                        </div>
-                        <div className="col-md-2 col-sm-12 align-self-center text-sm-center details-xs">
-                          <button
-                            type="button"
-                            className="btn btn-block btn-delete justify-content-start"
-                            value=""
-                            onClick=""
-                          >
-                            <i className="bi bi-pen-fill"></i>
-                          </button>
-                        </div>
-                      </div>
+            </div>
+          </form>
+          <div>
+            {isPlaylist.map((current) => {
+              return (
+                <div>
+                  <div className="d-flex flex-row playlist-layout container main-container">
+                    <img
+                      src={current.coverUser}
+                      alt="twbs"
+                      width="100"
+                      height="100"
+                      className="rounded-circle flex-shrink-0"
+                    />
+                    <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
+                      <h2 className="playlist-name m-3 text-sm-center">
+                        {current.namePlaylistUser}
+                      </h2>
                     </div>
-                  );
-                })}
-              </div>
-              {/* <h2 className="result d-flex flex-row">Playlist</h2> */}
->>>>>>> b0aa04ee718b6a8e7a0f39c2f5af22c4834a0fb9
+                    <div className="col-md-2 col-sm-12 align-self-center text-sm-center details-xs">
+                      <button
+                        type="button"
+                        className="btn btn-block btn-delete justify-content-start"
+                        value=""
+                        onClick=""
+                      >
+                        <i className="bi bi-pen-fill"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          {/* <h2 className="result d-flex flex-row">Playlist</h2> */}
           <div className="main-wrapper">
             {musicXpandListApi.map((current) => {
               console.log("current do map", current);
