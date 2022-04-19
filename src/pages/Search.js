@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import SpotifyWebApi from "spotify-web-api-js";
 import "../styles/style.css";
 import axios from "axios";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -14,12 +15,16 @@ function Search(props) {
   const [search, setSearch] = useState([]);
   console.log(search);
 
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const contador = props.counter;
   const setContador = props.setCounter;
 
   useEffect(() => {
+    setLoading(true);
+
     spotifyApi.searchTracks(keyword).then(
       function (data) {
         console.log('Search by "Camila"', data);
@@ -55,7 +60,7 @@ function Search(props) {
         namePlaylistUser: "",
       })
       .then((response) => {
-        console.log(response.data); //NOTIFICAÇÃO
+        console.log(response.data);
         axios
           .get("https://ironrest.herokuapp.com/musicxpand/")
           .then((response) => {
@@ -71,6 +76,7 @@ function Search(props) {
 
   return (
     <div className="bg-dark">
+      {!loading && <LoadingSpinner />}
       <h2 className="result d-flex flex-row">Results containing {keyword}</h2>
       <div className="d-flex flex-wrap justify-content-around">
         {search.map((current, index) => {
