@@ -10,6 +10,7 @@
   }
 }
 
+
 .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {
@@ -29,10 +30,13 @@
 }
 
 .cover-container {
-  background-image: url("../images/background.jpg");
+  background: url("../images/background.jpg") no-repeat center center fixed;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  
+  
+  
 }
 
 /*
@@ -63,6 +67,7 @@
 
 .home-text {
   font-size: 18px;
+  margin: 0;
 }
 
 .feature-icon {
@@ -82,17 +87,6 @@
   color: white;
 }
 
-.btn-discovery {
-  background-image: linear-gradient(#f33c7f, rgb(242, 38, 113));
-  color: white;
-  margin-right: 1rem;
-}
-
-.btn-details {
-  background-image: linear-gradient(rgb(116, 68, 156), rgb(98, 52, 148));
-  color: white;
-}
-
 .svg {
   background-image: url("../images/trash3-fill.svg");
 }
@@ -107,19 +101,32 @@
 }
 
 .btn-listen {
-  background-color: rgb(116, 68, 156);
+  background-color:  rgb(116, 68, 156);
   color: white;
+}
+
+.btn-details {
+  background-color:  rgb(242, 38, 113);
+  color: white;
+}
+
+
+.btn-discovery {
+  background-color: rgb(242, 38, 113);
+  color: white;
+  margin-right: 1rem;
 }
 
 .btn-delete {
-  background-color: rgb(242, 38, 113);
-  color: white;
-}
-
-.btn-listen {
   background-color: rgb(116, 68, 156);
   color: white;
 }
+
+.details {
+  padding: 0rem 0rem 3rem 2.75rem;
+  color: white;
+}
+
 
 .image-cover {
   margin-right: 0;
@@ -154,3 +161,33 @@ audio::-webkit-media-controls-panel {
 .playlist-name {
   color: white;
 }
+
+.playlist-display {
+  margin-top: 500px;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.card h5 {
+  white-space: nowrap;
+}
+
+.card img {
+  width: 302px;
+  height: 302px;
+}
+
+
+.bg {
+  position: cover; 
+  top: 0; 
+  left: 0; 
+	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/playlistStyle.css";
 import axios from "axios";
@@ -24,6 +25,8 @@ function Playlist(props) {
   ]);
   // const [albumDataFromSpotifyApi, setAlbumDataFromSpotifyApi] = useState([]);
   console.log("Array de musicas", musicXpandListApi);
+
+  const navigate = useNavigate();
 
   const contador = props.counter;
   const setContador = props.setCounter;
@@ -101,15 +104,14 @@ function Playlist(props) {
   }
 
   const isMusic = [];
-  const [isPlaylist, setPlaylist] = useState([]);
-
+  const isPlaylist = [];
 
   function filterByType(object) {
     if (
       ("coverUser" in object && isNaN(object.coverUser)) ||
       ("namePlaylistUser" in object && isNaN(object.namePlaylistUser))
     ) {
-      setPlaylist([object]);
+      isPlaylist.push(object);
     } else {
       isMusic.push(object);
     }
@@ -117,19 +119,17 @@ function Playlist(props) {
 
   musicXpandListApi.filter(filterByType);
 
+  // const hasPlaylist = !!(isPlaylist[0]||{}).coverUser
 
-  const hasPlaylist = !!(isPlaylist[0]||{}).coverUser
+  // console.log('hasplaylist', hasPlaylist)
 
-
-  console.log('hasplaylist', hasPlaylist)
- 
-  console.log("OLHAR AQUI", showResults);
 
   return (
-    <div>
-      <div className="bg-dark">
+    <div className="bg-dark">
+    <h2 className="result d-flex flex-row">Playlist</h2>
         <div className="container">
-          { showResults && hasPlaylist ? null : (
+          {/* { showResults && hasPlaylist ? null : ( */}
+          {showResults ? null : (
             <form onSubmit={handleSubmit}>
               <div className="custom-file">
                 <input
@@ -164,7 +164,7 @@ function Playlist(props) {
               </div>
             </form>
           )}
-          <div>
+          <div className="container m-5">
             {isPlaylist.map((current) => {
               return (
                 <div>
@@ -198,7 +198,7 @@ function Playlist(props) {
           </div>
           {/* <h2 className="result d-flex flex-row">Playlist</h2> */}
           <div className="main-wrapper m-4">
-            {musicXpandListApi.map((current) => {
+            {isMusic.map((current) => {
               console.log("current do map", current);
               return (
                 <div className="container main-container" key={current._id}>
@@ -218,13 +218,13 @@ function Playlist(props) {
                           <h5 className="mb-0">{current.songName}</h5>
                         </div>
                         <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
-                          {/* {current.artistName.map((currentArtist) => {
+                          {current.artistName.map((currentArtist) => {
                             return (
                               <h5 className="mb-0 opacity-75">
                                 {currentArtist.name}
                               </h5>
                             );
-                          })} */}
+                          })}
                         </div>
                         <div className="col-md-2 col-sm-12 opacity-75 align-self-center text-sm-center m-2 details-xs">
                           <h5 className="album-name mb-0">
@@ -246,6 +246,14 @@ function Playlist(props) {
                             <i className="bi bi-play-circle-fill"></i>
                           </button>
                           <button
+                            className="btn btn-block btn-details m-1"
+                            onClick={() =>
+                              navigate(`/details/${current.artistName[0].id}`)
+                            }
+                          >
+                            <i className="bi bi-search-heart-fill"></i>
+                          </button>
+                          <button
                             type="button"
                             className="btn btn-block btn-delete m-1"
                             value={current._id}
@@ -262,7 +270,6 @@ function Playlist(props) {
             })}
           </div>
         </div>
-      </div>
     </div>
   );
 }
