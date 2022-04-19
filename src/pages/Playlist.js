@@ -28,7 +28,7 @@ function Playlist(props) {
   const contador = props.counter;
   const setContador = props.setCounter;
 
-  const [showResults, setShowResults] = useState(false);
+  const [showResults, setShowResults] = useState(true);
 
   useEffect(() => {
     axios
@@ -37,7 +37,7 @@ function Playlist(props) {
         setMusicXpandListApi(response.data);
       })
       .catch((err) => console.error(err));
-  }, [showResults]);
+  }, []);
 
   function deleteSong(event) {
     let id = event.currentTarget.value;
@@ -86,8 +86,8 @@ function Playlist(props) {
       })
       .then((response) => {
         console.log(response.data);
-        setShowResults(true);
-        if (showResults === true) {
+        setShowResults(false);
+        if (showResults === false) {
           window.location.reload();
         }
       })
@@ -101,95 +101,103 @@ function Playlist(props) {
   }
 
   const isMusic = [];
-  const isPlaylist = [];
+  const [isPlaylist, setPlaylist] = useState([]);
+
 
   function filterByType(object) {
     if (
       ("coverUser" in object && isNaN(object.coverUser)) ||
       ("namePlaylistUser" in object && isNaN(object.namePlaylistUser))
     ) {
-      isPlaylist.push(object);
+      setPlaylist([object]);
     } else {
       isMusic.push(object);
     }
   }
 
   musicXpandListApi.filter(filterByType);
-  console.log("!!!!!!!! is music", isMusic);
-  console.log("!!!!!!!! is playlist", isPlaylist);
 
-  console.log(isPlaylist);
+
+  const hasPlaylist = !!(isPlaylist[0]||{}).coverUser
+
+
+  console.log('hasplaylist', hasPlaylist)
+ 
+  console.log("OLHAR AQUI", showResults);
 
   return (
     <div>
       <div className="bg-dark">
         <div className="container">
-          <form onSubmit={handleSubmit}>
-            <div className="custom-file">
-              <input
-                id="userCreateCover"
-                name="coverUser"
-                value={coverUser}
-                onChange={CreateCover}
-                type="text"
-              />
-            </div>
+          { showResults && hasPlaylist ? null : (
+            <form onSubmit={handleSubmit}>
+              <div className="custom-file">
+                <input
+                  placeholder="My Playlist's photo"
+                  id="userCreateCover"
+                  name="coverUser"
+                  value={coverUser}
+                  onChange={CreateCover}
+                  type="text"
+                />
+              </div>
 
-            <div className="mb-3">
-              <input
-                placeholder="My Playlist's name"
-                id="userCreateName"
-                name="namePlaylistUser"
-                value={namePlaylistUser}
-                onChange={CreatePlaylistName}
-                type="text"
-              />
-              <div>
-                <button
-                  className="btn btn-outline-secondary mb-3"
-                  type="submit"
-                  id="button"
-                  onClick={PostInApi}
-                >
-                  Button
-                </button>
+              <div className="mb-3">
+                <input
+                  placeholder="My Playlist's name"
+                  id="userCreateName"
+                  name="namePlaylistUser"
+                  value={namePlaylistUser}
+                  onChange={CreatePlaylistName}
+                  type="text"
+                />
+                <div>
+                  <button
+                    className="btn btn-outline-secondary mb-3"
+                    type="submit"
+                    id="button"
+                    onClick={PostInApi}
+                  >
+                    Submit
+                  </button>
+                </div>
               </div>
-              </div>
-              </form>
-              <div>
-                {isPlaylist.map((current) => {
-                  return (
-                    <div>
-                      <div className="d-flex flex-row playlist-layout container main-container">
-                        <img
-                          src={current.coverUser}
-                          alt="twbs"
-                          width="100"
-                          height="100"
-                          className="rounded-circle flex-shrink-0"
-                        />
-                        <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
-                          <h2 className="playlist-name m-3 text-sm-center">
-                            {current.namePlaylistUser}
-                          </h2>
-                        </div>
-                        <div className="col-md-2 col-sm-12 align-self-center text-sm-center details-xs">
-                          <button
-                            type="button"
-                            className="btn btn-block btn-delete justify-content-start"
-                            value=""
-                            onClick=""
-                          >
-                            <i className="bi bi-pen-fill"></i>
-                          </button>
-                        </div>
-                      </div>
+            </form>
+          )}
+          <div>
+            {isPlaylist.map((current) => {
+              return (
+                <div>
+                  <div className="d-flex flex-row playlist-layout container main-container">
+                    <img
+                      src={current.coverUser}
+                      alt="twbs"
+                      width="100"
+                      height="100"
+                      className="rounded-circle flex-shrink-0"
+                    />
+                    <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
+                      <h2 className="playlist-name m-3 text-sm-center">
+                        {current.namePlaylistUser}
+                      </h2>
                     </div>
-                  );
-                })}
-              </div>
-              {/* <h2 className="result d-flex flex-row">Playlist</h2> */}
-          <div className="main-wrapper">
+                    <div className="col-md-2 col-sm-12 align-self-center text-sm-center details-xs">
+                      <button
+                        type="button"
+                        className="btn btn-block btn-delete justify-content-start"
+                        value=""
+                        onClick=""
+                      >
+                        <i className="bi bi-pen-fill"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          {/* <h2 className="result d-flex flex-row">Playlist</h2> */}
+          <div className="main-wrapper m-4">
             {musicXpandListApi.map((current) => {
               console.log("current do map", current);
               return (
