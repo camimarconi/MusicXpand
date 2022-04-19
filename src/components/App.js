@@ -10,14 +10,12 @@ import Search from "../pages/Search";
 import Playlist from "../pages/Playlist";
 import Details from "../pages/Details";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import LoadingSpinner from "./LoadingSpinner";
 
 const spotifyApi = new SpotifyWebApi();
 
 function App() {
   const [state, setState] = useState("");
   const [counter, setCounter] = useState(0);
-  const [loading, setLoading] = useState(false);
 
   // Retrieve an access token
   useEffect(() => {
@@ -42,8 +40,6 @@ function App() {
       .catch((err) => {
         console.error(err);
       });
-
-    setLoading(true);
     axios
       .get("https://ironrest.herokuapp.com/musicxpand/")
       .then((response) => {
@@ -72,8 +68,6 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          {!loading && <LoadingSpinner />}
-
           <Route
             path="/search/:keyword"
             element={

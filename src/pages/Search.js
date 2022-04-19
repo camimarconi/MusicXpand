@@ -27,7 +27,6 @@ function Search(props) {
 
     spotifyApi.searchTracks(keyword).then(
       function (data) {
-        console.log('Search by "Camila"', data);
         setSearch([...data.tracks.items]);
       },
       function (err) {
@@ -60,7 +59,7 @@ function Search(props) {
         namePlaylistUser: "",
       })
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data); //NOTIFICAÇÃO
         axios
           .get("https://ironrest.herokuapp.com/musicxpand/")
           .then((response) => {
@@ -78,12 +77,12 @@ function Search(props) {
     <div className="bg-dark">
       {!loading && <LoadingSpinner />}
       <h2 className="result d-flex flex-row">Results containing {keyword}</h2>
-      <div className="d-flex flex-wrap justify-content-around">
+      <div className="d-flex flex-wrap justify-content-around align-items-end">
         {search.map((current, index) => {
           return (
             <div
               key={index}
-              className="card mt-5 d-flex flex-col mb-4 text-center"
+              className="card mt-5 d-flex flex-colmb-4 text-center"
               style={{ width: "21rem" }}
             >
               <div className="card-body col align-self-center">
@@ -92,21 +91,21 @@ function Search(props) {
                   className="card-img-top"
                   alt="..."
                 />
-                <h5 className="mt-3 fs-3 col">{current.artists[0].name}</h5>
+                <h5 className="mt-3 fs-4 col">{current.artists[0].name}</h5>
                 <h4 className="mt-3 fs-5 col">{current.name}</h4>
                 <h6 className="mt-3 card-subtitle mb-2 text-muted col align-self-center">
                   {current.album.name}
                 </h6>
                 {/* <p className="card-text">{current.artists[0].external_urls.spotify}</p> */}
 
-                <div className="align-self-end">
+                <div className="align-self-end text-center">
                   <audio
                     className="audio-layout"
                     controls
                     src={current.preview_url}
                   ></audio>
                   <button
-                    className="btn btn-discovery col"
+                    className="btn btn-discovery col text-center"
                     // value={current.album.id}
                     value={index}
                     onClick={addSong}

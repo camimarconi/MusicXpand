@@ -54,8 +54,8 @@ function Home() {
             </form>
           </main>
 
-          <footer className="mt-5 text-white-50">
-            <p>
+          <footer className="mt-5 text-white-50 m-5">
+            <p className="m-5">
               Cover template for{" "}
               <Link to="https://getbootstrap.com/" className="text-white">
                 Bootstrap
