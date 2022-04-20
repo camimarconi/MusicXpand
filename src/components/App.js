@@ -69,6 +69,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/search/:keyword" element={<Search token={state} />} />
           <Route path="/playlist/" element={<Playlist token={state} />} />
+          <Route path="/userUpdate/:id" element={<UserUpdate />} />
           <Route path="/details/:id" element={<Details token={state} />} />
         </Routes>
       </div>
