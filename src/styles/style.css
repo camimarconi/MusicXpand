@@ -10,7 +10,6 @@
   }
 }
 
-
 .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {
@@ -34,9 +33,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  
-  
-  
 }
 
 /*
@@ -101,15 +97,14 @@
 }
 
 .btn-listen {
-  background-color:  rgb(116, 68, 156);
+  background-color: rgb(116, 68, 156);
   color: white;
 }
 
 .btn-details {
-  background-color:  rgb(242, 38, 113);
+  background-color: rgb(242, 38, 113);
   color: white;
 }
-
 
 .btn-discovery {
   background-color: rgb(242, 38, 113);
@@ -126,7 +121,6 @@
   padding: 0rem 0rem 3rem 2.75rem;
   color: white;
 }
-
 
 .image-cover {
   margin-right: 0;
@@ -149,13 +143,11 @@
 audio::-webkit-media-controls-play-button,
 audio::-webkit-media-controls-panel {
   background-color: rgb(242, 38, 113);
-
 }
 
 .badge {
   background-color: #f33c7f;
   border-radius: 10px;
-  
 }
 
 .playlist-name {
@@ -180,14 +172,12 @@ audio::-webkit-media-controls-panel {
   height: 302px;
 }
 
-
 .bg {
-  position: cover; 
-  top: 0; 
-  left: 0; 
-	
+  position: cover;
+  top: 0;
+  left: 0;
+
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
 }
-

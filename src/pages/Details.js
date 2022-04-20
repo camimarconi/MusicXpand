@@ -51,7 +51,6 @@ function Details(props) {
     );
   }, [props.token, id]);
 
-
   function addSong(event) {
     //capturar o id que está no search
     // newList ser vinculada com o state do com ponente Playlist
@@ -96,7 +95,7 @@ function Details(props) {
 
   return (
     <div className="bg-dark">
-    <Navbar counter={counter} />
+      <Navbar counter={counter} />
       <h2 className="result d-flex flex-row">{artist.name}</h2>
       <div className="container">
         <picture>

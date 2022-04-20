@@ -1,11 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import "../styles/style.css";
 
-
 function Navbar(props) {
-
- const contador = props.counter
- console.log(contador)
+  const contador = props.counter;
+  console.log(contador);
 
   return (
     <div className="d-flex h-100 text-center text-white bg-dark">
