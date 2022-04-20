@@ -21,12 +21,17 @@ function UserUpdate() {
   const { _id } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`https://ironrest.herokuapp.com/musicxpand/${_id}`)
-      .then((response) => {
+    async function fectchInfo() {
+      try {
+        const response = await axios.get(
+          `https://ironrest.herokuapp.com/musicxpand/${_id}`
+        );
         setUserUpdateInfo(response.data);
-      })
-      .catch((err) => console.error(err));
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fectchInfo();
   }, [_id]);
 
   const handleChange = (event) => {
@@ -48,21 +53,11 @@ function UserUpdate() {
         userUpdateInfo
       );
       console.log("BATATAAAAAAA ", response.data);
+      navigate("/playlist/");
     } catch (err) {
       console.error("BANANAAAA", err);
     }
   }
-
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-
-  //   axios
-  //     .patch(`https://ironrest.herokuapp.com/musicxpand/${_id}`, userUpdateInfo)
-  //     .then(() => {
-  //       navigate(`/playlist/`);
-  //     })
-  //     .catch((err) => console.error(err));
-  // }
 
   return (
     <form onSubmit={handleSubmit}>

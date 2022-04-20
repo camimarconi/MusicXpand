@@ -11,6 +11,7 @@ import Playlist from "../pages/Playlist";
 import Details from "../pages/Details";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import UserUpdate from "../pages/UserUpdate";
+import AlbumMusics from "../pages/AlbumMusics";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -71,6 +72,10 @@ function App() {
           <Route path="/playlist/" element={<Playlist token={state} />} />
           <Route path="/userUpdate/:id" element={<UserUpdate />} />
           <Route path="/details/:id" element={<Details token={state} />} />
+          <Route
+            path="/albumMusics/:id"
+            element={<AlbumMusics token={state} />}
+          />
         </Routes>
       </div>
     </div>
