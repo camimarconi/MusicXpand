@@ -74,7 +74,17 @@ function Details(props) {
         namePlaylistUser: "",
       })
       .then((response) => {
-        console.log(response.data); //NOTIFICAÇÃO
+        console.log("!!!!!!", response.data); //NOTIFICAÇÃO
+        axios
+          .get("https://ironrest.herokuapp.com/musicxpand/")
+          .then((response) => {
+            const onlyMusics = response.data.filter(
+              (element) => element.coverUser === ""
+            );
+            setCounter(onlyMusics.length);
+            console.log(counter);
+          })
+          .catch((err) => console.error(err));
       })
       .catch((error) => {
         console.error(error);
@@ -109,7 +119,6 @@ function Details(props) {
         <div className="container">
           <div className="main-wrapper m-4">
             {topTracks.map((current, index) => {
-              console.log("current do map", current);
               return (
                 <div className="container main-container" key={index}>
                   <div className="row main-row">
@@ -187,13 +196,11 @@ function Details(props) {
                     className="card-img-top align-self-end"
                     alt="..."
                   />
-                  <h5 className="mt-3 fs-3 col align-self-end text-wrap">
-                    {current.name}
-                  </h5>
-                  <h4 className="mt-3 fs-5 col align-self-end text-wrap">
+                  <h5 className="mt-3 fs-3 col text-wrap">{current.name}</h5>
+                  <h4 className="mt-3 fs-5 col text-wrap">
                     {current.artists[0].name}
                   </h4>
-                  <h4 className="mt-3 fs-5 col align-self-end text-wrap">
+                  <h4 className="mt-3 fs-5 col text-wrap">
                     {current.release_date.slice(0, 4)}
                   </h4>
 
