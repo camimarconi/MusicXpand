@@ -162,7 +162,7 @@ function Playlist(props) {
     <div>
       <Navbar counter={counter} />
       <div className="bg-dark">
-        <h2 className="result d-flex flex-row">Playlist</h2>
+        <h2 className="result d-flex flex-row">My Playlist</h2>
         <div className="container">
           {/* { showResults && hasPlaylist ? null : ( */}
           {showForm && !hasPlaylist ? (

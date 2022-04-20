@@ -178,22 +178,26 @@ function Details(props) {
             console.log(current);
             return (
               <div
-                className="card mt-5 d-flex flex-col mb-4"
+                className="card mt-5 d-flex flex-col mb-4 text-wrap"
                 style={{ width: "21rem" }}
               >
-                <div className="card-body col align-self-center">
+                <div className="card-body col align-self-center text-wrap">
                   <img
                     src={current.images[0].url}
-                    className="card-img-top"
+                    className="card-img-top align-self-end"
                     alt="..."
                   />
-                  <h5 className="mt-3 fs-3 col">{current.name}</h5>
-                  <h4 className="mt-3 fs-5 col">{current.artists[0].name}</h4>
-                  <h4 className="mt-3 fs-5 col">
+                  <h5 className="mt-3 fs-3 col align-self-end text-wrap">
+                    {current.name}
+                  </h5>
+                  <h4 className="mt-3 fs-5 col align-self-end text-wrap">
+                    {current.artists[0].name}
+                  </h4>
+                  <h4 className="mt-3 fs-5 col align-self-end text-wrap">
                     {current.release_date.slice(0, 4)}
                   </h4>
 
-                  <div className="align-self-end"></div>
+                  {/* <div className="align-self-end"></div> */}
                 </div>
               </div>
             );
