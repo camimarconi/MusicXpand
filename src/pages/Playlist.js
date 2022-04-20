@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/playlistStyle.css";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import UserUpdate from "./UserUpdate";
 
 // import SpotifyWebApi from "spotify-web-api-js";
 // import CreatePlaylistCoverName

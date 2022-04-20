@@ -5,6 +5,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 import "../styles/style.css";
 import axios from "axios";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Navbar from "../components/Navbar";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -79,6 +80,8 @@ function Search(props) {
 
   return (
     <div className="bg-dark">
+      <Navbar counter={counter} />
+
       {!loading && <LoadingSpinner />}
       <h2 className="result d-flex flex-row">Results containing "{keyword}"</h2>
       <div className="d-flex flex-wrap justify-content-around align-items-end">

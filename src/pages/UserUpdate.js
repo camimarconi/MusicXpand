@@ -47,10 +47,9 @@ function UserUpdate() {
         `https://ironrest.herokuapp.com/musicxpand/${_id}`,
         userUpdateInfo
       );
-      navigate("/playlist/");
-      return response.data;
+      console.log("BATATAAAAAAA ", response.data);
     } catch (err) {
-      console.error("BANANAAAAAAAAAA", err);
+      console.error("BANANAAAA", err);
     }
   }
 
