@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import SpotifyWebApi from "spotify-web-api-js";
 import "../styles/style.css";
 import axios from "axios";
-import LoadingSpinner from "../components/LoadingSpinner";
 import Navbar from "../components/Navbar";
 
 const spotifyApi = new SpotifyWebApi();
@@ -16,15 +15,11 @@ function Search(props) {
   const [search, setSearch] = useState([]);
   console.log(search);
 
-  const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const [counter, setCounter] = useState();
 
   useEffect(() => {
-    setLoading(true);
-
     spotifyApi.searchTracks(keyword).then(
       function (data) {
         setSearch([...data.tracks.items]);
@@ -60,6 +55,16 @@ function Search(props) {
       })
       .then((response) => {
         console.log(response.data); //NOTIFICAÇÃO
+        axios
+          .get("https://ironrest.herokuapp.com/musicxpand/")
+          .then((response) => {
+            const onlyMusics = response.data.filter(
+              (element) => element.coverUser === ""
+            );
+            setCounter(onlyMusics.length);
+            console.log(counter);
+          })
+          .catch((err) => console.error(err));
       })
       .catch((error) => {
         console.error(error);
@@ -78,12 +83,11 @@ function Search(props) {
       .catch((err) => console.error(err));
   }, []);
 
+
   return (
     <div className="bg-dark">
       <Navbar counter={counter} />
-
-      {!loading && <LoadingSpinner />}
-      <h2 className="result d-flex flex-row">Results containing "{keyword}"</h2>
+      <h2 className="result d-flex flex-row">Results containing {keyword}</h2>
       <div className="d-flex flex-wrap justify-content-around align-items-end">
         {search.map((current, index) => {
           return (
