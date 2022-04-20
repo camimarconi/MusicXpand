@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 import Home from "../pages/Home";
 import { useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
@@ -15,7 +15,7 @@ const spotifyApi = new SpotifyWebApi();
 
 function App() {
   const [state, setState] = useState("");
-  const [counter, setCounter] =  useState(0)
+  // const [counter, setCounter] =  useState(0)
 
 
   // Retrieve an access token
@@ -45,8 +45,8 @@ function App() {
       .get("https://ironrest.herokuapp.com/musicxpand/")
       .then((response) => {
         console.log(response.data)
-        setCounter(response.data.length);
-        console.log(counter)
+        // setCounter(response.data.length);
+        // console.log(counter)
       })
       .catch((err) => console.error(err));
 
@@ -67,13 +67,12 @@ function App() {
 
   return (
     <div>
-      <Navbar counter={counter}/>
 
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/search/:keyword" element={<Search token={state} counter={counter} setCounter={setCounter} />} />
-          <Route path="/playlist/" element={<Playlist token={state} counter={counter} setCounter={setCounter}/>} />
+          <Route path="/search/:keyword" element={<Search token={state}/>} />
+          <Route path="/playlist/" element={<Playlist token={state}/>} />
           <Route path="/details/:id" element={<Details token={state} />} />
         </Routes>
       </div>

@@ -1,7 +1,9 @@
 import "../styles/style.css";
 import FormControl from "../components/FormControl";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Navbar from "../components/Navbar";
 
 function Home() {
   const [state, setState] = useState("");
@@ -17,8 +19,23 @@ function Home() {
     event.preventDefault();
   }
 
+  const [counter, setCounter] = useState();
+
+  useEffect(() => {
+    axios
+      .get("https://ironrest.herokuapp.com/musicxpand/")
+      .then((response) => {
+        const onlyMusics = response.data.filter(
+          (element) => element.coverUser === ""
+        );
+        setCounter(onlyMusics.length);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <div>
+      <Navbar counter={counter} />
       <div className="d-flex h-100 text-center text-white bg-dark">
         <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
           <main className="pt-5">
@@ -32,10 +49,10 @@ function Home() {
                   musical genres and songs based on what you've searched.
                 </p>
               </div>
-            <div className="p-layout">
-              <p className="home-text fw-light">
-                You can add your favorite songs to a personalized playlist.
-              </p>
+              <div className="p-layout">
+                <p className="home-text fw-light">
+                  You can add your favorite songs to a personalized playlist.
+                </p>
               </div>
             </div>
             <form onSubmit={handleSubmit}>
