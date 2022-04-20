@@ -18,21 +18,25 @@ function UserUpdate() {
 
   const navigate = useNavigate();
 
-  const { _id } = useParams();
+  const { id } = useParams();
+  // const { _id } = useParams();
+
+  console.log(id);
 
   useEffect(() => {
     async function fectchInfo() {
       try {
         const response = await axios.get(
-          `https://ironrest.herokuapp.com/musicxpand/${_id}`
+          `https://ironrest.herokuapp.com/musicxpand/${id}`
         );
-        setUserUpdateInfo(response.data);
+        setUserUpdateInfo({ ...response.data });
+        console.log("o que eu tô pegando aqui", userUpdateInfo);
       } catch (err) {
         console.error(err);
       }
     }
     fectchInfo();
-  }, [_id]);
+  }, [id]);
 
   const handleChange = (event) => {
     setUserUpdateInfo({
@@ -45,12 +49,16 @@ function UserUpdate() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const data = { ...userUpdateInfo };
+    delete data._id;
+
+    console.log(data);
 
     try {
       // PUT vs. PATCH: o PUT é a ação de substituição, enquanto o PATCH é a de atualização. O PUT tem potencial de destruir informação caso o objeto enviado na requisição PUT não contenha todos os campos que o objeto original contém
       const response = await axios.put(
-        `https://ironrest.herokuapp.com/musicxpand/${_id}`,
-        userUpdateInfo
+        `https://ironrest.herokuapp.com/musicxpand/${id}`,
+        data
       );
       console.log("BATATAAAAAAA ", response.data);
       navigate("/playlist/");

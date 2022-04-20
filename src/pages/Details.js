@@ -43,7 +43,6 @@ function Details(props) {
     );
     spotifyApi.getArtistTopTracks(id, "US").then(
       function (data) {
-        // console.log("GHDSDFGS", data.tracks[0]);
         setTopTracks([...data.tracks]);
       },
       function (err) {
