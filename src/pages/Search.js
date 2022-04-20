@@ -19,8 +19,7 @@ function Search(props) {
 
   const navigate = useNavigate();
 
-  const contador = props.counter;
-  const setContador = props.setCounter;
+  const [counter, setCounter] = useState();
 
   useEffect(() => {
     setLoading(true);
@@ -60,18 +59,23 @@ function Search(props) {
       })
       .then((response) => {
         console.log(response.data); //NOTIFICAÇÃO
-        axios
-          .get("https://ironrest.herokuapp.com/musicxpand/")
-          .then((response) => {
-            setContador(response.data.length);
-            console.log(contador);
-          })
-          .catch((err) => console.error(err));
       })
       .catch((error) => {
         console.error(error);
       });
   }
+
+  useEffect(() => {
+    axios
+      .get("https://ironrest.herokuapp.com/musicxpand/")
+      .then((response) => {
+        const onlyMusics = response.data.filter(
+          (element) => element.coverUser === ""
+        );
+        setCounter(onlyMusics.length);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className="bg-dark">

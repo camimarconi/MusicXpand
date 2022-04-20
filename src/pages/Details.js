@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SpotifyWebApi from "spotify-web-api-js";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -17,6 +18,8 @@ function Details(props) {
     ],
   });
   const [topTracks, setTopTracks] = useState([]);
+
+  const [counter, setCounter] = useState();
 
   useEffect(() => {
     spotifyApi.getArtistAlbums(id).then(
@@ -48,9 +51,6 @@ function Details(props) {
     );
   }, [props.token, id]);
 
-  const contador = props.counter;
-  const setContador = props.setCounter;
-
   function addSong(event) {
     //capturar o id que está no search
     // newList ser vinculada com o state do com ponente Playlist
@@ -75,21 +75,27 @@ function Details(props) {
       })
       .then((response) => {
         console.log(response.data); //NOTIFICAÇÃO
-        axios
-          .get("https://ironrest.herokuapp.com/musicxpand/")
-          .then((response) => {
-            setContador(response.data.length);
-            console.log(contador);
-          })
-          .catch((err) => console.error(err));
       })
       .catch((error) => {
         console.error(error);
       });
   }
 
+  useEffect(() => {
+    axios
+      .get("https://ironrest.herokuapp.com/musicxpand/")
+      .then((response) => {
+        const onlyMusics = response.data.filter(
+          (element) => element.coverUser === ""
+        );
+        setCounter(onlyMusics.length);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <div className="bg-dark">
+      <Navbar counter={counter} />
       <h2 className="result d-flex flex-row">{artist.name}</h2>
       <div className="container">
         <picture>
