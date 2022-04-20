@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import SpotifyWebApi from "spotify-web-api-js";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import "../styles/style.css";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -42,7 +43,6 @@ function Details(props) {
     );
     spotifyApi.getArtistTopTracks(id, "US").then(
       function (data) {
-        // console.log("GHDSDFGS", data.tracks[0]);
         setTopTracks([...data.tracks]);
       },
       function (err) {
@@ -74,7 +74,7 @@ function Details(props) {
         namePlaylistUser: "",
       })
       .then((response) => {
-        console.log('!!!!!!', response.data); //NOTIFICAÇÃO
+        console.log("!!!!!!", response.data); //NOTIFICAÇÃO
         axios
           .get("https://ironrest.herokuapp.com/musicxpand/")
           .then((response) => {
@@ -102,7 +102,6 @@ function Details(props) {
       })
       .catch((err) => console.error(err));
   }, []);
-
 
   return (
     <div className="bg-dark">
@@ -187,25 +186,27 @@ function Details(props) {
           {state.map((current) => {
             console.log(current);
             return (
-              <div
-                className="card mt-5 d-flex flex-col mb-4 text-wrap"
-                style={{ width: "21rem" }}
-              >
-                <div className="card-body col align-self-center text-wrap">
-                  <img
-                    src={current.images[0].url}
-                    className="card-img-top"
-                    alt="..."
-                  />
-                  <h5 className="mt-3 fs-3 col text-wrap">{current.name}</h5>
-                  <h4 className="mt-3 fs-5 col text-wrap">{current.artists[0].name}</h4>
-                  <h4 className="mt-3 fs-5 col text-wrap">
-                    {current.release_date.slice(0, 4)}
-                  </h4>
-
-                  <div className="align-self-end"></div>
+              <Link to={`/albumMusics/${id}`} className="text-decoration-none">
+                <div
+                  className="card mt-5 d-flex flex-col mb-4 text-wrap"
+                  style={{ width: "21rem" }}
+                >
+                  <div className="card-body col align-self-center text-wrap">
+                    <img
+                      src={current.images[0].url}
+                      className="card-img-top align-self-end"
+                      alt="..."
+                    />
+                    <h5 className="mt-3 fs-3 col text-wrap">{current.name}</h5>
+                    <h4 className="mt-3 fs-5 col text-wrap nameClass">
+                      {current.artists[0].name}
+                    </h4>
+                    <h4 className="mt-3 fs-5 col text-wrap nameClass">
+                      {current.release_date.slice(0, 4)}
+                    </h4>
+                  </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
           ;
