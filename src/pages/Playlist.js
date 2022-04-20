@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/playlistStyle.css";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import UserUpdate from "./UserUpdate";
 
 // import SpotifyWebApi from "spotify-web-api-js";
 // import CreatePlaylistCoverName
@@ -19,7 +20,6 @@ function Playlist(props) {
       albumName: "",
       musicPreview: "",
       musicId: "",
-      _id: "",
       coverUser: "",
       namePlaylistUser: "",
     },
@@ -32,7 +32,6 @@ function Playlist(props) {
     albumName: "",
     musicPreview: "",
     musicId: "",
-    _id: "",
     coverUser: "",
     namePlaylistUser: "",
   });
@@ -136,6 +135,8 @@ function Playlist(props) {
     PostInApi();
   }
 
+  console.log("AQUIIIIIIII", playlistCoverInfo);
+
   // const isMusic = [];
   // const isPlaylist = [];
 
@@ -203,13 +204,14 @@ function Playlist(props) {
           <div className="container m-5">
             {hasPlaylist ? (
               <div>
-                <div className="d-flex flex-row playlist-layout container main-container">
+                <div className="d-flex flex-row playlist-layout container main-container m-4 mb-5">
                   <img
                     src={playlistCoverInfo.coverUser}
                     alt="twbs"
-                    width="100"
-                    height="100"
-                    className="rounded-circle flex-shrink-0"
+                    width="250"
+                    height="250"
+                    className="img-fluid img-thumbnail rounded"
+                    // className="rounded-circle flex-shrink-0"
                   />
                   <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
                     <h2 className="playlist-name m-3 text-sm-center">
@@ -217,14 +219,12 @@ function Playlist(props) {
                     </h2>
                   </div>
                   <div className="col-md-2 col-sm-12 align-self-center text-sm-center details-xs">
-                    <button
-                      type="button"
+                    <Link
                       className="btn btn-block btn-delete justify-content-start"
-                      value=""
-                      onClick=""
+                      to={`/userUpdate/${playlistCoverInfo._id}`}
                     >
                       <i className="bi bi-pen-fill"></i>
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -10,6 +10,7 @@ import Search from "../pages/Search";
 import Playlist from "../pages/Playlist";
 import Details from "../pages/Details";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import UserUpdate from "../pages/UserUpdate";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -84,6 +85,8 @@ function App() {
               />
             }
           />
+          <Route path="/userUpdate/:id" element={<UserUpdate />} />
+
           <Route path="/details/:id" element={<Details token={state} />} />
         </Routes>
       </div>
