@@ -22,6 +22,9 @@ function Details(props) {
 
   const [counter, setCounter] = useState();
 
+  console.log("TOP TRACKS", topTracks);
+  console.log("artist", artist);
+
   useEffect(() => {
     spotifyApi.getArtistAlbums(id).then(
       function (data) {
@@ -102,6 +105,8 @@ function Details(props) {
       })
       .catch((err) => console.error(err));
   }, []);
+
+  // const albumid = topTracks[0].id;
 
   return (
     <div className="bg-dark">
@@ -186,7 +191,10 @@ function Details(props) {
           {state.map((current) => {
             console.log(current);
             return (
-              <Link to={`/albumMusics/${id}`} className="text-decoration-none">
+              <Link
+                className="text-decoration-none"
+                to={`/albumMusics/${current.id}`}
+              >
                 <div
                   className="card mt-5 d-flex flex-col mb-4 text-wrap"
                   style={{ width: "21rem" }}

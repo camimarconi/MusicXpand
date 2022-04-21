@@ -24,7 +24,7 @@ function UserUpdate() {
   console.log(id);
 
   useEffect(() => {
-    async function fectchInfo() {
+    async function fetchInfo() {
       try {
         const response = await axios.get(
           `https://ironrest.herokuapp.com/musicxpand/${id}`
@@ -35,7 +35,7 @@ function UserUpdate() {
         console.error(err);
       }
     }
-    fectchInfo();
+    fetchInfo();
   }, [id]);
 
   const handleChange = (event) => {
