@@ -205,8 +205,8 @@ audio::-webkit-media-controls-panel {
 
 .ul-details {
   color: white;
-  opacity: 0.5;
-  font-size: small;
+  opacity: 0.6;
+  font-size: smaller;
   list-style: none;
 }
 

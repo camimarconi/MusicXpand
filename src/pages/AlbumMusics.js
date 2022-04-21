@@ -49,7 +49,7 @@ function AlbumMusics(props) {
     //capturar o id que está no search
     // newList ser vinculada com o state do com ponente Playlist
     let index = event.currentTarget.value;
-    console.log(index)
+    console.log(index);
     const albumCover = stateTracks[index].album.images[0].url;
     const songName = stateTracks[index].name;
     const artistName = stateTracks[index].artists;

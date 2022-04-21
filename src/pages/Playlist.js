@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/style.css";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import UserUpdate from "./UserUpdate";
 
 // import SpotifyWebApi from "spotify-web-api-js";
 // import CreatePlaylistCoverName
@@ -115,8 +114,6 @@ function Playlist(props) {
     });
   };
 
-  console.log('fsfdsfsfsdfsdf', playlistCoverInfo)
-
   function PostInApi(event) {
     axios
       .post("https://ironrest.herokuapp.com/musicxpand", playlistCoverInfo)
@@ -132,7 +129,6 @@ function Playlist(props) {
       });
   }
 
-
   function handleSubmit(event) {
     event.preventDefault();
     PostInApi();
@@ -140,9 +136,6 @@ function Playlist(props) {
 
   console.log("AQUIIIIIIII", playlistCoverInfo);
 
-  
- 
- 
   // const isMusic = [];
   // const isPlaylist = [];
 
@@ -168,7 +161,6 @@ function Playlist(props) {
   return (
     <div className="bg-dark">
       <Navbar counter={counter} />
-      {console.log('numero aqui', playlistCoverInfo._id)}
       <div className="container">
         {/* { showResults && hasPlaylist ? null : ( */}
         {showForm && !hasPlaylist ? (
@@ -206,29 +198,35 @@ function Playlist(props) {
             </div>
           </form>
         ) : null}
-        <div className="container">
+        <div className="main-wrapper m-4">
           {hasPlaylist ? (
-            <div className="container details-layout">
-              <div className=" flex-row col-md-4 col-sm-12">
-                <img
-                  src={playlistCoverInfo.coverUser}
-                  alt="twbs"
-                  width="250"
-                  height="250"
-                  className="img-fluid img-thumbnail rounded "
-                  // className="rounded-circle flex-shrink-0"
-                />
-                <div className=" flex-row details-xs col-md-2 col-sm-12">
-                  <h2 className="playlist-name text-sm-center">
-                    {playlistCoverInfo.namePlaylistUser}
-                  </h2>
+            <div className="container main-container">
+              <div className="row">
+                <div className="col-12 align-center">
+                  <div className="row justify-content-sm-between text-sm-center">
+                    <div className="align-middle align-self-center text-sm-center col-4">
+                      <img
+                        src={playlistCoverInfo.coverUser}
+                        alt="my cover choice"
+                        width="300"
+                        height="300"
+                        className="img-fluid img-thumbnail rounded mb-4"
+                        // className="rounded-circle flex-shrink-0"
+                      />
+                      <div className="col-4">
+                        <h1 className="playlist-name mb-4">
+                          {playlistCoverInfo.namePlaylistUser}
+                        </h1>
 
-                  <Link
-                    className="btn btn-block btn-delete justify-content-start"
-                    to={`/userUpdate/${playlistCoverInfo._id}`}
-                  >
-                    <i className="bi bi-pen-fill"></i>
-                  </Link>
+                        <Link
+                          className="btn btn-block btn-delete mb-5"
+                          to={`/userUpdate/${playlistCoverInfo._id}`}
+                        >
+                          <i className="bi bi-pen-fill"></i>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

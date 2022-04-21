@@ -1,7 +1,5 @@
 import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/style.css";
 import axios from "axios";
@@ -64,8 +62,8 @@ function AboutUs() {
   return (
     <div className="bg-dark">
       <Navbar counter={counter} />
-      <div className="container">
-        <div className="m-5 row-md-2 row-sm-12 align-self-center text-sm-center">
+      <div className="container align-self-center text-sm-center">
+        <div className="row-md-2 row-sm-12 align-self-center text-sm-center">
           <img
             src={logoMono}
             alt="Logo-Mono"
@@ -73,10 +71,10 @@ function AboutUs() {
             width="310"
             height="400"
           />
-          <h2 className="details-about-us m-5 mt-0">
+          <h2 className="details-about-us mt-0 align-self-center text-sm-center">
             Camila Marconi && Natalia Rudiger
           </h2>
-          <h3 className="details-about-us mt-5 margin-specified">
+          <h3 className="details-about-us mt-5 margin-specified align-self-center text-sm-center">
             Ironhack WDPT 2022
           </h3>
           <img
@@ -86,34 +84,47 @@ function AboutUs() {
             height="30"
             className=" img-fluid details-about-us mt-5 margin-specified"
           />
-          <h5>Sources</h5>
-          <ul className="ul-details">
-            <li className="ul-details">
-              Spotify for Developers:{" "}
-              <a className="ul-details" href="https://developer.spotify.com/">
-                https://developer.spotify.com/
-              </a>
-            </li>
-            <li className="ul-details">
-              Spotify Web Api Documentation:{" "}
-              <a
-                className="ul-details"
-                href="https://developer.spotify.com/documentation/web-api/"
-              >
-                https://developer.spotify.com/documentation/web-api/
-              </a>
-            </li>
-            <li className="ul-details">
-              JMPerez/Wrapper:{" "}
-              <a
-                className="ul-details"
-                href="https://github.com/JMPerez/spotify-web-api-js/"
-              >
-                https://github.com/JMPerez/spotify-web-api-js/
-              </a>
-            </li>
-          </ul>
-          <p className=" details-about-us mt-5 margin-specified">.</p>
+          <h5 className="align-self-center text-sm-center">Sources</h5>
+          <p className="ul-details align-self-center text-sm-center">
+            <a
+              className="ul-details align-self-center text-sm-center"
+              href="https://developer.spotify.com/"
+            >
+              Spotify for Developers
+            </a>
+          </p>
+
+          <p className="ul-details align-self-center text-sm-center">
+            <a
+              className="ul-details align-self-center text-sm-center"
+              href="https://developer.spotify.com/documentation/web-api/"
+            >
+              Spotify Web Api Documentation
+            </a>
+          </p>
+
+          <p className="ul-details align-self-center text-sm-center">
+            <a
+              className="ul-details align-self-center text-sm-center"
+              href="https://github.com/JMPerez/spotify-web-api-js/"
+            >
+              JMPerez/Wrapper
+            </a>
+          </p>
+
+          <p className="ul-details align-self-center text-sm-center">
+            <i className="ul-details">Logo by: </i>
+            <a
+              className="ul-details align-self-center text-sm-center"
+              href="https://www.instagram.com/julislr.m/"
+            >
+              @julislr.m
+            </a>
+          </p>
+
+          <p className="details-about-us mt-5 align-self-center text-sm-center">
+            .
+          </p>
         </div>
       </div>
     </div>
