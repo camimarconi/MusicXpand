@@ -198,7 +198,7 @@ function Playlist(props) {
             </div>
           </form>
         ) : null}
-        <div className="main-wrapper m-4">
+        <div className="main-wrapper">
           {hasPlaylist ? (
             <div className="container main-container">
               <div className="row">
