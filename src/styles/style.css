@@ -193,6 +193,7 @@ audio::-webkit-media-controls-panel {
 
 .details-about-us {
   color: #b776f8;
+  
 }
 
 .detail-img-logo {
@@ -204,12 +205,55 @@ audio::-webkit-media-controls-panel {
 }
 
 .ul-details {
-  color: white;
-  opacity: 0.6;
+  color: rgb(177, 176, 176);
   font-size: smaller;
   list-style: none;
 }
 
 h5 {
   color: #b776f8;
+}
+
+
+.tracks {
+  color: white;
+  margin-left: -50px;
+}
+
+.albums {
+  color: white;
+  margin-left: 0;
+}
+
+.color-cards {
+  color: gray;
+}
+
+.album-cover {
+  margin-top: 50px;
+}
+
+.cover-name {
+  width: 500px;
+  height: auto;
+}
+
+.a-link:hover,
+.nav-link:focus {
+  color: #f33c7f;
+  text-decoration: none;
+}
+.about-name-details {
+  color: #b776f8;
+text-decoration: none;
+line-height: 1.5;
+}
+
+.ironhack-about-us {
+  color: white;
+}
+
+.line-about-us {
+  color: #fff;
+  size: 5px;
 }

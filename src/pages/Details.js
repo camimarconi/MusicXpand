@@ -111,12 +111,12 @@ function Details(props) {
   return (
     <div className="bg-dark">
       <Navbar counter={counter} />
-      <h2 className="result d-flex flex-row">{artist.name}</h2>
-      <div className="container">
-        <img src={artist.images[0].url} className="img-fluid m-5" alt="" />
+      <h1 className="result d-flex flex-row">{artist.name}</h1>
+      <div className="main-wrapper m-5">
+        <img src={artist.images[0].url} className="img-fluid" alt="" />
 
-        <div className="tracks">
-          <h2 className="details d-flex flex-row">Top Tracks</h2>
+        <div className="main-wrapper m-5">
+          <h2 className="tracks">Top Tracks</h2>
         </div>
         {/* <h2 className="result d-flex flex-row">Playlist</h2> */}
         <div className="container">
@@ -184,7 +184,7 @@ function Details(props) {
             })}
           </div>
         </div>
-        <h2 className="result d-flex flex-row">Albums</h2>
+        <h2 className="albums mt-5">Albums</h2>
         <div className="d-flex flex-wrap justify-content-around">
           {state.map((current) => {
             console.log(current);
@@ -207,7 +207,7 @@ function Details(props) {
                     <h4 className="mt-3 fs-5 col text-wrap nameClass">
                       {current.artists[0].name}
                     </h4>
-                    <h4 className="mt-3 fs-5 col text-wrap nameClass">
+                    <h4 className="mt-3 fs-5 col text-wrap color-cards">
                       {current.release_date.slice(0, 4)}
                     </h4>
                   </div>

@@ -102,14 +102,13 @@ function AlbumMusics(props) {
     <div className="bg-dark">
       <Navbar counter={counter} />
 
-      <h2 className="result d-flex flex-row">{artistName}</h2>
-      <div className="container">
-        <div className=" flex-row col-md-4 col-sm-12">
-          <div className="container">
-            <img src={albumCover} alt="" className="img-fluid m-5" />
-          </div>
-          <div className="flex-row details-xs col-md-12 col-sm-12">
-            <h2 className="details d-flex flex-row m-3">{state.name}</h2>
+      <h1 className="result d-flex flex-row">{artistName}</h1>
+      
+        <div className="main-wrapper m-5">
+          <img src={albumCover} alt="" className="img-fluid cover-name" />
+
+          <div className="tracks">
+            <h2 className="result">{state.name}</h2>
           </div>
         </div>
 
@@ -174,7 +173,7 @@ function AlbumMusics(props) {
             );
           })}
         </div>
-      </div>
+      
     </div>
   );
 }
