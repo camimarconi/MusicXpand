@@ -1,5 +1,4 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/playlistStyle.css";
 import "../styles/style.css";
 import axios from "axios";
 import Navbar from "../components/Navbar";

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/playlistStyle.css";
+import "../styles/style.css";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import UserUpdate from "./UserUpdate";
@@ -213,7 +213,9 @@ function Playlist(props) {
                 <img
                   src={playlistCoverInfo.coverUser}
                   alt="twbs"
-                  className="img-fluid img-thumbnail rounded col-sm-12"
+                  width="250"
+                  height="250"
+                  className="img-fluid img-thumbnail rounded "
                   // className="rounded-circle flex-shrink-0"
                 />
                 <div className=" flex-row details-xs col-md-2 col-sm-12">

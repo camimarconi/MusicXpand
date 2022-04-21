@@ -1,11 +1,12 @@
 import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/playlistStyle.css";
-import axios from "axios";
-import "../images/logo-Mono.png";
+import { Link } from "react-router-dom";
 
-const Mono = "../images/logo-Mono.png";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/style.css";
+import axios from "axios";
+import logoMono from "../images/logoMono.png";
+import logo1 from "../images/logo1.png";
 
 function AboutUs() {
   const [musicXpandListApi, setMusicXpandListApi] = useState([
@@ -66,16 +67,53 @@ function AboutUs() {
       <div className="container">
         <div className="m-5 row-md-2 row-sm-12 align-self-center text-sm-center">
           <img
-            src={Mono}
+            src={logoMono}
             alt="Logo-Mono"
-            className="img-fluid img-thumbnail"
-            width="200"
-            height="200"
+            className=""
+            width="310"
+            height="400"
           />
-          <h2 className="details-about-us m-5">
-            Camila Marconi & Natalia Rudigir
+          <h2 className="details-about-us m-5 mt-0">
+            Camila Marconi && Natalia Rudiger
           </h2>
-          <h3 className="details-about-us m-5 mb-5">Ironhack WDPT 2022</h3>
+          <h3 className="details-about-us mt-5 margin-specified">
+            Ironhack WDPT 2022
+          </h3>
+          <img
+            src={logo1}
+            alt="icon-logo-Mono"
+            width="30"
+            height="30"
+            className=" img-fluid details-about-us mt-5 margin-specified"
+          />
+          <h5>Sources</h5>
+          <ul className="ul-details">
+            <li className="ul-details">
+              Spotify for Developers:{" "}
+              <a className="ul-details" href="https://developer.spotify.com/">
+                https://developer.spotify.com/
+              </a>
+            </li>
+            <li className="ul-details">
+              Spotify Web Api Documentation:{" "}
+              <a
+                className="ul-details"
+                href="https://developer.spotify.com/documentation/web-api/"
+              >
+                https://developer.spotify.com/documentation/web-api/
+              </a>
+            </li>
+            <li className="ul-details">
+              JMPerez/Wrapper:{" "}
+              <a
+                className="ul-details"
+                href="https://github.com/JMPerez/spotify-web-api-js/"
+              >
+                https://github.com/JMPerez/spotify-web-api-js/
+              </a>
+            </li>
+          </ul>
+          <p className=" details-about-us mt-5 margin-specified">.</p>
         </div>
       </div>
     </div>
