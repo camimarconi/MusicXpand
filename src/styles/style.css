@@ -194,3 +194,11 @@ audio::-webkit-media-controls-panel {
 .details-about-us {
   color: #b776f8;
 }
+
+.detail-img-logo {
+  border: none;
+}
+
+.margin-specified {
+  margin: 50px;
+}

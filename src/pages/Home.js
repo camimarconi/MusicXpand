@@ -56,13 +56,13 @@ function Home() {
               </div>
             </div>
             <form onSubmit={handleSubmit}>
-              <div>
+              <div className="mt-4">
                 <FormControl onChange={handleDiscover} value={state} />
               </div>
               <div>
                 <button
                   type="submit"
-                  className="btn btn-lg btn-secondary mt-5"
+                  className="btn btn-lg btn-secondary mt-5 margin-specified"
                   onClick={() => navigate(`/search/${state}`)}
                 >
                   Discover
@@ -79,7 +79,11 @@ function Home() {
               </Link>
               , by{" "}
               <Link to="https://twitter.com/mdo" className="text-white">
-                @mdo
+                @mdo{" "}
+              </Link>
+              and{" "}
+              <Link to="/aboutus" className="text-white">
+                @monoinc.
               </Link>
               .
             </p>
