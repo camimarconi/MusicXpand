@@ -103,77 +103,82 @@ function AlbumMusics(props) {
       <Navbar counter={counter} />
 
       <h1 className="result d-flex flex-row">{artistName}</h1>
-      
-        <div className="main-wrapper m-5">
-          <img src={albumCover} alt="" className="img-fluid cover-name" />
 
-          <div className="tracks">
-            <h2 className="result">{state.name}</h2>
-          </div>
+      <div className="main-wrapper m-5">
+        <img src={albumCover} alt="" className="img-fluid cover-name" />
+
+        <div className="tracks">
+          <h2 className="result">{state.name}</h2>
         </div>
+      </div>
 
-        <div className="main-wrapper m-5">
-          {stateTracks.map((current, index) => {
-            console.log("current do map", current);
-            return (
-              <div className="container main-container" key={index}>
-                <div className="row main-row">
-                  <div className="col-12 align-center">
-                    <div className="row p-2 justify-content-sm-between text-sm-center details-xs">
-                      <div className="col-md-2 align-middle align-self-center image-cover text-sm-center details-xs">
-                        <img
-                          src={current.album.images[0].url}
-                          alt="twbs"
-                          width="80"
-                          height="80"
-                          className="rounded-circle flex-shrink-0 "
-                        />
-                      </div>
-                      <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
-                        <h5 className="mb-0">{current.name}</h5>
-                      </div>
-                      <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
-                        {current.artists.map((currentArtist) => {
-                          return (
-                            <h5 className="mb-0 opacity-75">
-                              {currentArtist.name}
-                            </h5>
+      <div className="main-wrapper m-5">
+        {stateTracks.map((current, index) => {
+          console.log("current do map", current);
+          return (
+            <div className="container main-container" key={index}>
+              <div className="row main-row">
+                <div className="col-12 align-center">
+                  <div className="row p-2 justify-content-sm-between text-sm-center details-xs">
+                    <div className="col-md-2 align-middle align-self-center image-cover text-sm-center details-xs">
+                      <img
+                        src={current.album.images[0].url}
+                        alt="twbs"
+                        width="80"
+                        height="80"
+                        className="rounded-circle flex-shrink-0 "
+                      />
+                    </div>
+                    <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
+                      <h5 className="mb-0">{current.name}</h5>
+                    </div>
+                    <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
+                      {current.artists.map((currentArtist) => {
+                        return (
+                          <h5
+                            className="mb-0 opacity-75"
+                            key={currentArtist.id}
+                          >
+                            {currentArtist.name}
+                          </h5>
+                        );
+                      })}
+                    </div>
+                    <div className="col-md-2 col-sm-12 opacity-75 align-self-center text-sm-center m-2 details-xs">
+                      <h5 className="album-name mb-0">{current.name}</h5>
+                    </div>
+
+                    <div className="col-md-3 col-sm-12 align-self-center text-sm-center m-2 details-xs">
+                      <button
+                        type="button"
+                        className="btn btn-block btn-listen m-1"
+                        value={current._id}
+                        onClick={() => {
+                          window.open(
+                            `https://open.spotify.com/track/${current.id}`
                           );
-                        })}
-                      </div>
-                      <div className="col-md-2 col-sm-12 opacity-75 align-self-center text-sm-center m-2 details-xs">
-                        <h5 className="album-name mb-0">{current.name}</h5>
-                      </div>
-
-                      <div className="col-md-3 col-sm-12 align-self-center text-sm-center m-2 details-xs">
-                        <button
-                          type="button"
-                          className="btn btn-block btn-listen m-1"
-                          value={current._id}
-                          onClick={() => {
-                            window.open(
-                              `https://open.spotify.com/track/${current.id}`
-                            );
-                          }}
-                        >
-                          <i className="bi bi-play-circle-fill"></i>
-                        </button>
-                        <button
-                          className="btn btn-discovery col text-center"
-                          value={index}
-                          onClick={addSong}
-                        >
-                          <i className="bi bi-heart-fill"></i>
-                        </button>
-                      </div>
+                        }}
+                      >
+                        <i className="bi bi-play-circle-fill"></i>
+                      </button>
+                      <button
+                        className="btn btn-discovery col text-center"
+                        value={index}
+                        onClick={addSong}
+                      >
+                        <i className="bi bi-heart-fill"></i>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
-      
+            </div>
+          );
+        })}
+      </div>
+      <p className="details-about-us mt-5 align-self-center text-sm-center">
+        .
+      </p>
     </div>
   );
 }
