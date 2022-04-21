@@ -19,7 +19,7 @@ function Navbar(props) {
                 {/* <span className="badge bg-primary rounded-pill">{}</span> */}
                 Playlists <span className="badge badge-pill">{contador}</span>
               </Link>
-              <Link className="nav-link" to="#">
+              <Link className="nav-link" to="/aboutus">
                 About Us
               </Link>
             </nav>
