@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/style.css";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import UserUpdate from "./UserUpdate";
 
 // import SpotifyWebApi from "spotify-web-api-js";
 // import CreatePlaylistCoverName
@@ -114,6 +115,8 @@ function Playlist(props) {
     });
   };
 
+  console.log('fsfdsfsfsdfsdf', playlistCoverInfo)
+
   function PostInApi(event) {
     axios
       .post("https://ironrest.herokuapp.com/musicxpand", playlistCoverInfo)
@@ -129,6 +132,7 @@ function Playlist(props) {
       });
   }
 
+
   function handleSubmit(event) {
     event.preventDefault();
     PostInApi();
@@ -136,6 +140,9 @@ function Playlist(props) {
 
   console.log("AQUIIIIIIII", playlistCoverInfo);
 
+  
+ 
+ 
   // const isMusic = [];
   // const isPlaylist = [];
 
@@ -161,6 +168,7 @@ function Playlist(props) {
   return (
     <div className="bg-dark">
       <Navbar counter={counter} />
+      {console.log('numero aqui', playlistCoverInfo._id)}
       <div className="container">
         {/* { showResults && hasPlaylist ? null : ( */}
         {showForm && !hasPlaylist ? (

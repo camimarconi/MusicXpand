@@ -12,17 +12,18 @@ function AlbumMusics(props) {
   const { id } = useParams();
   const [counter, setCounter] = useState();
 
-  console.log("MORANGO", id);
-
   const [state, setState] = useState({});
   const [tracksIds, setTracksIds] = useState([]);
   const [stateTracks, setStateTracks] = useState([]);
+  const [albumCover, setAlbumCover] = useState("");
+  const [artistName, setArtistName] = useState("");
+  const [topTracks, setTopTracks] = useState([]);
 
   useEffect(() => {
     spotifyApi
       .getAlbum(id)
       .then(function (data) {
-        console.log("DATA", data);
+        console.log("primeiro DATA", data);
         setState({ ...data });
         return data.tracks.items.map(function (t) {
           return t.id;
@@ -30,94 +31,93 @@ function AlbumMusics(props) {
       })
       .then(function (trackIds) {
         setTracksIds(trackIds);
-        console.log("trackIds", trackIds);
-
         return spotifyApi.getTracks(trackIds);
       })
       .then(function (tracksInfo) {
-        console.log("tracksInfo", tracksInfo);
-        setStateTracks(tracksInfo);
+        console.log("depois tracksInfo", tracksInfo);
+        setStateTracks(tracksInfo.tracks);
+        console.log("por ultimo statetracks", stateTracks);
+        setAlbumCover(tracksInfo.tracks[0].album.images[0].url);
+        setArtistName(tracksInfo.tracks[0].artists[0].name);
       })
       .catch(function (error) {
         console.error(error);
       });
   }, [props.token, id]);
 
-  //   function addSong(event) {
-  //     //capturar o id que está no search
-  //     // newList ser vinculada com o state do com ponente Playlist
-  //     let index = event.currentTarget.value;
-  //     console.log("EU NÃO AGUENTO MAIS MINHA GARGANTA DÓI", stateTracks[index]);
-  //     const albumCover = stateTracks[index].album.images[0].url;
-  //     const songName = stateTracks[index].name;
-  //     const artistName = stateTracks[index].artists;
-  //     const albumName = stateTracks[index].album.name;
-  //     const musicPreview = stateTracks[index].preview_url;
-  //     const musicId = stateTracks[index].id;
+  function addSong(event) {
+    //capturar o id que está no search
+    // newList ser vinculada com o state do com ponente Playlist
+    let index = event.currentTarget.value;
+    console.log(index)
+    const albumCover = stateTracks[index].album.images[0].url;
+    const songName = stateTracks[index].name;
+    const artistName = stateTracks[index].artists;
+    const albumName = stateTracks[index].album.name;
+    const musicPreview = stateTracks[index].preview_url;
+    const musicId = stateTracks[index].id;
 
-  //     axios
-  //       .post("https://ironrest.herokuapp.com/musicxpand", {
-  //         albumCover: albumCover,
-  //         songName: songName,
-  //         artistName: artistName,
-  //         albumName: albumName,
-  //         musicPreview: musicPreview,
-  //         musicId: musicId,
-  //         coverUser: "",
-  //         namePlaylistUser: "",
-  //       })
-  //       .then((response) => {
-  //         console.log(response.data); //NOTIFICAÇÃO
-  //         axios
-  //           .get("https://ironrest.herokuapp.com/musicxpand/")
-  //           .then((response) => {
-  //             const onlyMusics = response.data.filter(
-  //               (element) => element.coverUser === ""
-  //             );
-  //             setCounter(onlyMusics.length);
-  //             console.log(counter);
-  //           })
-  //           .catch((err) => console.error(err));
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //   }
+    axios
+      .post("https://ironrest.herokuapp.com/musicxpand", {
+        albumCover: albumCover,
+        songName: songName,
+        artistName: artistName,
+        albumName: albumName,
+        musicPreview: musicPreview,
+        musicId: musicId,
+        coverUser: "",
+        namePlaylistUser: "",
+      })
+      .then((response) => {
+        console.log("!!!!!!", response.data); //NOTIFICAÇÃO
+        axios
+          .get("https://ironrest.herokuapp.com/musicxpand/")
+          .then((response) => {
+            const onlyMusics = response.data.filter(
+              (element) => element.coverUser === ""
+            );
+            setCounter(onlyMusics.length);
+            console.log(counter);
+          })
+          .catch((err) => console.error(err));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
-  //   useEffect(() => {
-  //     axios
-  //       .get("https://ironrest.herokuapp.com/musicxpand/")
-  //       .then((response) => {
-  //         const onlyMusics = response.data.filter(
-  //           (element) => element.coverUser === ""
-  //         );
-  //         setCounter(onlyMusics.length);
-  //       })
-  //       .catch((err) => console.error(err));
-  //   }, []);
+  useEffect(() => {
+    axios
+      .get("https://ironrest.herokuapp.com/musicxpand/")
+      .then((response) => {
+        const onlyMusics = response.data.filter(
+          (element) => element.coverUser === ""
+        );
+        setCounter(onlyMusics.length);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className="bg-dark">
       <Navbar counter={counter} />
+
+      <h2 className="result d-flex flex-row">{artistName}</h2>
       <div className="container">
-        <div className="container details-layout">
-          <div className=" flex-row col-md-4 col-sm-12">
-            <img
-              src={state.images[0].url}
-              alt="twbs"
-              className="img-fluid img-thumbnail rounded col-sm-12"
-            />
-            <div className=" flex-row details-xs col-md-2 col-sm-12">
-              <h2 className="playlist-name text-sm-center">{state.name}</h2>
-            </div>
+        <div className=" flex-row col-md-4 col-sm-12">
+          <div className="container">
+            <img src={albumCover} alt="" className="img-fluid m-5" />
+          </div>
+          <div className="flex-row details-xs col-md-12 col-sm-12">
+            <h2 className="details d-flex flex-row m-3">{state.name}</h2>
           </div>
         </div>
 
-        <div className="main-wrapper m-4">
-          {stateTracks.tracks.map((current) => {
+        <div className="main-wrapper m-5">
+          {stateTracks.map((current, index) => {
             console.log("current do map", current);
             return (
-              <div className="container main-container" key={current._id}>
+              <div className="container main-container" key={index}>
                 <div className="row main-row">
                   <div className="col-12 align-center">
                     <div className="row p-2 justify-content-sm-between text-sm-center details-xs">
@@ -143,19 +143,17 @@ function AlbumMusics(props) {
                         })}
                       </div>
                       <div className="col-md-2 col-sm-12 opacity-75 align-self-center text-sm-center m-2 details-xs">
-                        <h5 className="album-name mb-0">
-                          {current.album.name}
-                        </h5>
+                        <h5 className="album-name mb-0">{current.name}</h5>
                       </div>
 
                       <div className="col-md-3 col-sm-12 align-self-center text-sm-center m-2 details-xs">
                         <button
                           type="button"
                           className="btn btn-block btn-listen m-1"
-                          //   value={current._id}
+                          value={current._id}
                           onClick={() => {
                             window.open(
-                              `https://open.spotify.com/track/${current.external_urls.spotify}`
+                              `https://open.spotify.com/track/${current.id}`
                             );
                           }}
                         >
@@ -163,8 +161,8 @@ function AlbumMusics(props) {
                         </button>
                         <button
                           className="btn btn-discovery col text-center"
-                          //   value={index}
-                          //   onClick={addSong}
+                          value={index}
+                          onClick={addSong}
                         >
                           <i className="bi bi-heart-fill"></i>
                         </button>
