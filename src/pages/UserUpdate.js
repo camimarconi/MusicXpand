@@ -124,48 +124,55 @@ function UserUpdate() {
   return (
     <div className="bg-dark">
       <Navbar counter={counter} />
-
       <div className="main-wrapper m-4">
         <div className="container main-container">
-          <form onSubmit={handleSubmit} className="m-5">
-            <div className="custom-file mt-3">
-              <input
-                placeholder="My Playlist's photo"
-                id="userCreateCover"
-                name="coverUser"
-                value={userUpdateInfo.coverUser}
-                onChange={handleChange}
-                type="text"
-              />
-            </div>
+          <div className=" row ">
+            <div className="col-12 align-center">
+              <div className="row justify-content-sm-between text-sm-center">
+                <div className="align-middle align-self-center text-sm-center">
+                  <form onSubmit={handleSubmit} className="m-5">
+                    <div className="custom-file">
+                      <input
+                        placeholder="My Playlist's photo"
+                        id="userCreateCover"
+                        name="coverUser"
+                        value={userUpdateInfo.coverUser}
+                        onChange={handleChange}
+                        type="text"
+                      />
+                    </div>
 
-            <div className="mt-3 ">
-              <input
-                placeholder="My Playlist's name"
-                id="userCreateName"
-                name="namePlaylistUser"
-                value={userUpdateInfo.namePlaylistUser}
-                onChange={handleChange}
-                type="text"
-              />
-              <div className="mt-3">
-                <button
-                  className="btn btn-outline-secondary mt-3 mb-5"
-                  type="submit"
-                  id="button"
-                >
-                  Save
-                </button>
+                    <div className="mt-3 ">
+                      <input
+                        placeholder="My Playlist's name"
+                        id="userCreateName"
+                        name="namePlaylistUser"
+                        value={userUpdateInfo.namePlaylistUser}
+                        onChange={handleChange}
+                        type="text"
+                      />
+                      <div className="mt-3">
+                        <button
+                          className="btn btn-outline-secondary mt-3 mb-5"
+                          type="submit"
+                          id="button"
+                        >
+                          Save
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <img
+                    src={logo1}
+                    alt="icon-logo-Mono"
+                    width="30"
+                    height="30"
+                    className=" img-fluid details-about-us mt-5 margin-specified"
+                  />
+                </div>
               </div>
             </div>
-          </form>
-          <img
-            src={logo1}
-            alt="icon-logo-Mono"
-            width="30"
-            height="30"
-            className=" img-fluid details-about-us mt-5 margin-specified"
-          />
+          </div>
         </div>
       </div>
     </div>

@@ -142,7 +142,10 @@ function Details(props) {
                         <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
                           {current.artists.map((currentArtist) => {
                             return (
-                              <h5 className="mb-0 opacity-75">
+                              <h5
+                                key={currentArtist.name}
+                                className="mb-0 opacity-75"
+                              >
                                 {currentArtist.name}
                               </h5>
                             );
@@ -190,6 +193,7 @@ function Details(props) {
             console.log(current);
             return (
               <Link
+                key={current.id}
                 className="text-decoration-none"
                 to={`/albumMusics/${current.id}`}
               >
@@ -218,6 +222,9 @@ function Details(props) {
           ;
         </div>
       </div>
+      <p className="details-about-us mt-5 align-self-center text-sm-center">
+        .
+      </p>
     </div>
   );
 }

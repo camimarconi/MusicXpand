@@ -255,7 +255,10 @@ function Playlist(props) {
                         <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
                           {current.artistName.map((currentArtist) => {
                             return (
-                              <h5 className="mb-0 opacity-75">
+                              <h5
+                                className="mb-0 opacity-75"
+                                key={currentArtist.id}
+                              >
                                 {currentArtist.name}
                               </h5>
                             );
@@ -306,6 +309,9 @@ function Playlist(props) {
           </div>
         </div>
       </div>
+      <p className="details-about-us mt-5 align-self-center text-sm-center">
+        .
+      </p>
     </div>
   );
 }

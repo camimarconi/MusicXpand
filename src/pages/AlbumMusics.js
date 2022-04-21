@@ -101,12 +101,17 @@ function AlbumMusics(props) {
   return (
     <div className="bg-dark">
       <Navbar counter={counter} />
-
-      <h2 className="result d-flex flex-row">{artistName}</h2>
-      <div className="container">
-        <div className=" flex-row col-md-4 col-sm-12">
-          <div className="container">
-            <img src={albumCover} alt="" className="img-fluid m-5" />
+      <div className="container main-container">
+        <div className=" row ">
+          <div className="align-center">
+            <h1 className="result me-5">{artistName}</h1>
+            <div className="align-middle align-self-center image-cover text-sm-center details-xs">
+              <img
+                src={albumCover}
+                alt="spotify cover album"
+                className="img-fluid m-5"
+              />
+            </div>
           </div>
           <div className="flex-row details-xs col-md-12 col-sm-12">
             <h2 className="details d-flex flex-row m-3">{state.name}</h2>
@@ -136,7 +141,10 @@ function AlbumMusics(props) {
                       <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
                         {current.artists.map((currentArtist) => {
                           return (
-                            <h5 className="mb-0 opacity-75">
+                            <h5
+                              className="mb-0 opacity-75"
+                              key={currentArtist.id}
+                            >
                               {currentArtist.name}
                             </h5>
                           );
@@ -175,6 +183,9 @@ function AlbumMusics(props) {
           })}
         </div>
       </div>
+      <p className="details-about-us mt-5 align-self-center text-sm-center">
+        .
+      </p>
     </div>
   );
 }
