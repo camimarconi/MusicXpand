@@ -72,9 +72,22 @@ function AboutUs() {
             height="400"
           />
           <h2 className="details-about-us mt-0 align-self-center text-sm-center">
-            Camila Marconi && Natalia Rudiger
+            <a
+              href="https://github.com/camimarconi"
+              className="a-link about-name-details fw-light"
+            >
+              Camila Marconi
+            </a>{" "}
+            <div>
+              <a
+                href="https://github.com/natriuge"
+                className="a-link about-name-details fw-light"
+              >
+                Natalia Rudiger Gelinski
+              </a>
+            </div>
           </h2>
-          <h3 className="details-about-us mt-5 margin-specified align-self-center text-sm-center">
+          <h3 className="ironhack-about-us mt-5 margin-specified align-self-center text-sm-center fw-light">
             Ironhack WDPT 2022
           </h3>
           <img
@@ -84,10 +97,10 @@ function AboutUs() {
             height="30"
             className=" img-fluid details-about-us mt-5 margin-specified"
           />
-          <h5 className="align-self-center text-sm-center">Sources</h5>
+          <h5 className="align-self-center text-sm-center m-4">Sources</h5>
           <p className="ul-details align-self-center text-sm-center">
             <a
-              className="ul-details align-self-center text-sm-center"
+              className="ul-details align-self-center text-sm-center a-link"
               href="https://developer.spotify.com/"
             >
               Spotify for Developers
@@ -96,7 +109,7 @@ function AboutUs() {
 
           <p className="ul-details align-self-center text-sm-center">
             <a
-              className="ul-details align-self-center text-sm-center"
+              className="ul-details align-self-center text-sm-center a-link"
               href="https://developer.spotify.com/documentation/web-api/"
             >
               Spotify Web Api Documentation
@@ -105,7 +118,7 @@ function AboutUs() {
 
           <p className="ul-details align-self-center text-sm-center">
             <a
-              className="ul-details align-self-center text-sm-center"
+              className="ul-details align-self-center text-sm-center a-link"
               href="https://github.com/JMPerez/spotify-web-api-js/"
             >
               JMPerez/Wrapper
@@ -113,16 +126,32 @@ function AboutUs() {
           </p>
 
           <p className="ul-details align-self-center text-sm-center">
-            <i className="ul-details">Logo by: </i>
+            Logo by:{" "}
             <a
-              className="ul-details align-self-center text-sm-center"
+              className="ul-details align-self-center text-sm-center a-link"
               href="https://www.instagram.com/julislr.m/"
             >
               @julislr.m
             </a>
           </p>
+          <p className="ul-details align-self-center text-sm-center">
+            Cover template for{" "}
+            <a
+              href="https://getbootstrap.com/"
+              className="ul-details align-self-center text-sm-center a-link"
+            >
+              Bootstrap{" "}
+            </a>
+            by{" "}
+            <a
+              href="https://twitter.com/mdo"
+              className="ul-details align-self-center text-sm-center a-link"
+            >
+              @mdo{" "}
+            </a>
+          </p>
 
-          <p className="details-about-us mt-5 align-self-center text-sm-center">
+          <p className="details-about-us mt-5 align-self-center text-sm-center a-link">
             .
           </p>
         </div>
