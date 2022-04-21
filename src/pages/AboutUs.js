@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/playlistStyle.css";
 import axios from "axios";
-
+import "../images/logo-Mono.png";
 
 const Mono = "../images/logo-Mono.png";
 

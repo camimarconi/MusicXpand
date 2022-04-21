@@ -172,8 +172,8 @@ function Playlist(props) {
       <div className="container">
         {/* { showResults && hasPlaylist ? null : ( */}
         {showForm && !hasPlaylist ? (
-          <form onSubmit={handleSubmit}>
-            <div className="custom-file">
+          <form onSubmit={handleSubmit} className="m-5">
+            <div className="custom-file mt-3">
               <input
                 placeholder="My Playlist's photo"
                 id="userCreateCover"
@@ -184,7 +184,7 @@ function Playlist(props) {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="mt-3">
               <input
                 placeholder="My Playlist's name"
                 id="userCreateName"
@@ -193,9 +193,9 @@ function Playlist(props) {
                 onChange={handleFormChange}
                 type="text"
               />
-              <div>
+              <div className="mt-3">
                 <button
-                  className="btn btn-outline-secondary mb-3"
+                  className="btn btn-outline-secondary mt-3"
                   type="submit"
                   id="button"
                   // onClick={PostInApi}
@@ -220,7 +220,7 @@ function Playlist(props) {
                   <h2 className="playlist-name text-sm-center">
                     {playlistCoverInfo.namePlaylistUser}
                   </h2>
-                
+
                   <Link
                     className="btn btn-block btn-delete justify-content-start"
                     to={`/userUpdate/${playlistCoverInfo._id}`}

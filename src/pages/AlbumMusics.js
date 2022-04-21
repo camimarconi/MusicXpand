@@ -16,12 +16,8 @@ function AlbumMusics(props) {
   console.log("MORANGO", id);
 
   const [state, setState] = useState({});
- 
   const [tracksIds, setTracksIds] = useState([]);
   const [stateTracks, setStateTracks] = useState([]);
-
-  console.log('state', state)
-  console.log('stateTracks', stateTracks)
 
   useEffect(() => {
     spotifyApi
@@ -108,7 +104,7 @@ function AlbumMusics(props) {
         <div className="container details-layout">
           <div className=" flex-row col-md-4 col-sm-12">
             <img
-              src=''
+              src={state.images[0].url}
               alt="twbs"
               className="img-fluid img-thumbnail rounded col-sm-12"
             />

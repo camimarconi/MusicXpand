@@ -5,6 +5,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 import "../styles/style.css";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -15,11 +16,15 @@ function Search(props) {
   const [search, setSearch] = useState([]);
   console.log(search);
 
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const [counter, setCounter] = useState();
 
   useEffect(() => {
+    setLoading(true);
+
     spotifyApi.searchTracks(keyword).then(
       function (data) {
         setSearch([...data.tracks.items]);
@@ -83,10 +88,11 @@ function Search(props) {
       .catch((err) => console.error(err));
   }, []);
 
-
   return (
     <div className="bg-dark">
       <Navbar counter={counter} />
+      {!loading && <LoadingSpinner />}
+
       <h2 className="result d-flex flex-row">Results containing {keyword}</h2>
       <div className="d-flex flex-wrap justify-content-around align-items-end">
         {search.map((current, index) => {

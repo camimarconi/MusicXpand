@@ -49,7 +49,7 @@
 
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
-  color:#f33c7f;
+  color: #f33c7f;
   border-bottom-color: #f33c7f;
 }
 
@@ -185,4 +185,12 @@ audio::-webkit-media-controls-panel {
 
 .details-layout {
   padding: 3rem 0rem 0rem 2.75rem;
+}
+
+.nameClass {
+  color: black;
+}
+
+.details-about-us {
+  color: #b776f8;
 }
