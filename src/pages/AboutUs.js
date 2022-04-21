@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/playlistStyle.css";
+import "../styles/style.css";
 import axios from "axios";
 import logoMono from "../images/logoMono.png";
 import logo1 from "../images/logo1.png";
@@ -86,6 +86,34 @@ function AboutUs() {
             height="30"
             className=" img-fluid details-about-us mt-5 margin-specified"
           />
+          <h5>Sources</h5>
+          <ul className="ul-details">
+            <li className="ul-details">
+              Spotify for Developers:{" "}
+              <a className="ul-details" href="https://developer.spotify.com/">
+                https://developer.spotify.com/
+              </a>
+            </li>
+            <li className="ul-details">
+              Spotify Web Api Documentation:{" "}
+              <a
+                className="ul-details"
+                href="https://developer.spotify.com/documentation/web-api/"
+              >
+                https://developer.spotify.com/documentation/web-api/
+              </a>
+            </li>
+            <li className="ul-details">
+              JMPerez/Wrapper:{" "}
+              <a
+                className="ul-details"
+                href="https://github.com/JMPerez/spotify-web-api-js/"
+              >
+                https://github.com/JMPerez/spotify-web-api-js/
+              </a>
+            </li>
+          </ul>
+          <p className=" details-about-us mt-5 margin-specified">.</p>
         </div>
       </div>
     </div>

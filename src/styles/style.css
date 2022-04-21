@@ -202,3 +202,14 @@ audio::-webkit-media-controls-panel {
 .margin-specified {
   margin: 50px;
 }
+
+.ul-details {
+  color: white;
+  opacity: 0.5;
+  font-size: small;
+  list-style: none;
+}
+
+h5 {
+  color: #b776f8;
+}
