@@ -93,7 +93,9 @@ function Search(props) {
       <Navbar counter={counter} />
       {!loading && <LoadingSpinner />}
 
-      <h2 className="result d-flex flex-row">Results containing {keyword}</h2>
+      <h2 className="result d-flex flex-row">
+        Results containing... <i> {keyword}</i>
+      </h2>
       <div className="d-flex flex-wrap justify-content-around align-items-end">
         {search.map((current, index) => {
           return (
