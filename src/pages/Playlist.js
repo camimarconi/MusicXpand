@@ -202,7 +202,7 @@ function Playlist(props) {
           {hasPlaylist ? (
             <div className="container main-container">
               <div className="row">
-                <div className="col-12 align-items-start m-3">
+                <div className="col-12 align-items-start m-3 ">
                   <img
                     src={playlistCoverInfo.coverUser}
                     alt="my cover choice"
@@ -212,14 +212,14 @@ function Playlist(props) {
                     // className="rounded-circle flex-shrink-0"
                   />
                 </div>
-                <div>
-                  <div className="d-inline-flex m-2 mb-4">
-                    <h1 className="playlist-name m-1">
+                <div className="d-inline align-self-center">
+                  <div className="d-inline m-2 mb-4">
+                    <h1 className="d-inline playlist-name m-1">
                       {playlistCoverInfo.namePlaylistUser}
                     </h1>
-                    <div className="container align-self-center">
+                    <div className="d-inline m-3 align-text-bottom">
                       <Link
-                        className="btn btn-block btn-delete"
+                        className="btn btn-delete"
                         to={`/userUpdate/${playlistCoverInfo._id}`}
                       >
                         <i className="bi bi-pen-fill"></i>
