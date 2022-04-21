@@ -113,9 +113,7 @@ function Details(props) {
       <Navbar counter={counter} />
       <h2 className="result d-flex flex-row">{artist.name}</h2>
       <div className="container">
-        <picture>
-          <img src={artist.images[0].url} className="img-fluid m-5" alt="" />
-        </picture>
+        <img src={artist.images[0].url} className="img-fluid m-5" alt="" />
 
         <div className="tracks">
           <h2 className="details d-flex flex-row">Top Tracks</h2>
