@@ -4,7 +4,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -17,7 +17,6 @@ function AlbumMusics(props) {
   const [stateTracks, setStateTracks] = useState([]);
   const [albumCover, setAlbumCover] = useState("");
   const [artistName, setArtistName] = useState("");
-  const [topTracks, setTopTracks] = useState([]);
 
   useEffect(() => {
     spotifyApi
