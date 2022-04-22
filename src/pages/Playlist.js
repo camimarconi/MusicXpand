@@ -5,11 +5,6 @@ import "../styles/style.css";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
-// import SpotifyWebApi from "spotify-web-api-js";
-// import CreatePlaylistCoverName
-
-// const spotifyApi = new SpotifyWebApi();
-
 function Playlist(props) {
   const [musicXpandListApi, setMusicXpandListApi] = useState([
     {
@@ -23,7 +18,7 @@ function Playlist(props) {
       namePlaylistUser: "",
     },
   ]);
-  // const [albumDataFromSpotifyApi, setAlbumDataFromSpotifyApi] = useState([]);
+
   const [playlistCoverInfo, setPlaylistCoverInfo] = useState({
     albumCover: "",
     songName: "",
@@ -54,24 +49,14 @@ function Playlist(props) {
           (element) => element.coverUser !== ""
         );
         if (!!coverInfo.length) {
-          console.log("!!coverInfo.length", !!coverInfo.length);
           setPlaylistCoverInfo(...coverInfo);
           setHasPlaylist(true);
         }
-        // setMusicXpandListApi(response.data);
         setMusicXpandListApi([...onlyMusics]);
-        console.log(onlyMusics.length);
-        console.log("coverInfo DENTRO DO USE EFFECT", coverInfo);
         setCounter(onlyMusics.length);
       })
       .catch((err) => console.error(err));
   }, []);
-
-  console.log(counter);
-  console.log("hasPlaylist", hasPlaylist);
-
-  console.log("Array de musicas", musicXpandListApi); // Flá => console.log tem que ser depois do useEffect, se não a Array de musicas ainda é vazia.
-  console.log("cover info", playlistCoverInfo); // Flá => console.log tem que ser depois do useEffect, se não a Array  ainda é vazia.
 
   function deleteSong(event) {
     let id = event.currentTarget.value;
@@ -84,28 +69,10 @@ function Playlist(props) {
         .delete(`https://ironrest.herokuapp.com/musicxpand/${id}`)
         .then((response) => {
           window.location.reload();
-          // axios
-          //   .get("https://ironrest.herokuapp.com/musicxpand/")
-          //   .then((response) => {
-          //     setContador(response.data.length);
-          //     console.log(contador);
-          //   })
-          //   .catch((err) => console.error(err));
         })
         .catch((err) => console.error(err));
     }
   }
-
-  // const [coverUser, setCoverUser] = useState("");
-  // const [namePlaylistUser, setNamePlaylistUser] = useState("");
-
-  // function CreateCover(event) {
-  //   setCoverUser(event.currentTarget.value);
-  // }
-
-  // function CreatePlaylistName(event) {
-  //   setNamePlaylistUser(event.currentTarget.value);
-  // }
 
   const handleFormChange = (event) => {
     setPlaylistCoverInfo({
@@ -118,11 +85,8 @@ function Playlist(props) {
     axios
       .post("https://ironrest.herokuapp.com/musicxpand", playlistCoverInfo)
       .then((response) => {
-        console.log(response.data);
         setShowForm(false);
-        // if (showResults === false) {
         window.location.reload();
-        // }
       })
       .catch((error) => {
         console.error(error);
@@ -134,35 +98,10 @@ function Playlist(props) {
     PostInApi();
   }
 
-  console.log("AQUIIIIIIII", playlistCoverInfo);
-
-  // const isMusic = [];
-  // const isPlaylist = [];
-
-  // function filterByType(object) {
-  //   if (
-  //     ("coverUser" in object && isNaN(object.coverUser)) ||
-  //     ("namePlaylistUser" in object && isNaN(object.namePlaylistUser))
-  //   ) {
-  //     isPlaylist.push(object);
-  //   } else {
-  //     isMusic.push(object);
-  //   }
-  // }
-
-  // musicXpandListApi.filter(filterByType);
-
-  // const hasPlaylist = !!(isPlaylist[0]||{}).coverUser
-
-  // console.log('hasplaylist', hasPlaylist)
-
-  console.log("showForm", showForm);
-
   return (
     <div className="bg-dark">
       <Navbar counter={counter} />
       <div className="container">
-        {/* { showResults && hasPlaylist ? null : ( */}
         {showForm && !hasPlaylist ? (
           <form onSubmit={handleSubmit} className="m-5">
             <div className="custom-file mt-3">
@@ -190,7 +129,6 @@ function Playlist(props) {
                   className="btn btn-outline-secondary mt-3"
                   type="submit"
                   id="button"
-                  // onClick={PostInApi}
                 >
                   Submit
                 </button>
@@ -209,7 +147,6 @@ function Playlist(props) {
                     width="300"
                     height="300"
                     className="img-fluid img-thumbnail rounded mb-2"
-                    // className="rounded-circle flex-shrink-0"
                   />
                 </div>
                 <div className="d-inline align-self-center">
@@ -230,10 +167,8 @@ function Playlist(props) {
               </div>
             </div>
           ) : null}
-          {/* <h2 className="result d-flex flex-row">Playlist</h2> */}
           <div className="main-wrapper m-4">
             {musicXpandListApi.map((current) => {
-              console.log("current do map", current);
               return (
                 <div className="container main-container" key={current._id}>
                   <div className="row main-row">

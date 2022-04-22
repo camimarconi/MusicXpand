@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import Navbar from "./Navbar";
 import Home from "../pages/Home";
 import { useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
@@ -13,14 +12,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import UserUpdate from "../pages/UserUpdate";
 import AlbumMusics from "../pages/AlbumMusics";
 import AboutUs from "../pages/AboutUs";
+import NotFound from "../pages/NotFound";
 
 const spotifyApi = new SpotifyWebApi();
 
 function App() {
   const [state, setState] = useState("");
-  // const [counter, setCounter] =  useState(0)
 
-  // Retrieve an access token
   useEffect(() => {
     axios
       .post(
@@ -38,7 +36,6 @@ function App() {
       .then((response) => {
         spotifyApi.setAccessToken(response.data.access_token);
         setState(response.data.access_token);
-        console.log(response.data);
       })
       .catch((err) => {
         console.error(err);
@@ -47,22 +44,9 @@ function App() {
       .get("https://ironrest.herokuapp.com/musicxpand/")
       .then((response) => {
         console.log(response.data);
-        // setCounter(response.data.length);
-        // console.log(counter)
       })
       .catch((err) => console.error(err));
   }, []);
-
-  // useEffect(() => {
-  //   spotifyApi.getArtistAlbums("43ZHCT0cAZBISjO8DG9PnE").then(
-  //     function (data) {
-  //       console.log("Artist albums", data);
-  //     },
-  //     function (err) {
-  //       console.error(err);
-  //     }
-  //   );
-  // }, [state]);
 
   return (
     <div>
@@ -78,6 +62,7 @@ function App() {
             element={<AlbumMusics token={state} />}
           />
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </div>

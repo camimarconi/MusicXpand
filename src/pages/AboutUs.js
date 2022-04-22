@@ -46,14 +46,10 @@ function AboutUs() {
           (element) => element.coverUser !== ""
         );
         if (!!coverInfo.length) {
-          console.log("!!coverInfo.length", !!coverInfo.length);
           setPlaylistCoverInfo(...coverInfo);
           setHasPlaylist(true);
         }
-        // setMusicXpandListApi(response.data);
         setMusicXpandListApi([...onlyMusics]);
-        console.log(onlyMusics.length);
-        console.log("coverInfo DENTRO DO USE EFFECT", coverInfo);
         setCounter(onlyMusics.length);
       })
       .catch((err) => console.error(err));

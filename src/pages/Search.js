@@ -11,10 +11,8 @@ const spotifyApi = new SpotifyWebApi();
 
 function Search(props) {
   const { keyword } = useParams();
-  console.log(keyword);
 
   const [search, setSearch] = useState([]);
-  console.log(search);
 
   const [loading, setLoading] = useState(false);
 
@@ -36,10 +34,7 @@ function Search(props) {
   }, [props.token, keyword]);
 
   function addSong(event) {
-    //capturar o id que está no search
-    // newList ser vinculada com o state do com ponente Playlist
     let index = event.currentTarget.value;
-    console.log(search[index]);
     const albumCover = search[index].album.images[0].url;
     const songName = search[index].name;
     const artistName = search[index].artists;
@@ -59,7 +54,6 @@ function Search(props) {
         namePlaylistUser: "",
       })
       .then((response) => {
-        console.log(response.data); //NOTIFICAÇÃO
         axios
           .get("https://ironrest.herokuapp.com/musicxpand/")
           .then((response) => {
@@ -67,7 +61,6 @@ function Search(props) {
               (element) => element.coverUser === ""
             );
             setCounter(onlyMusics.length);
-            console.log(counter);
           })
           .catch((err) => console.error(err));
       })
@@ -115,8 +108,6 @@ function Search(props) {
                 <h6 className="mt-3 card-subtitle mb-2 text-muted col align-self-center">
                   {current.album.name}
                 </h6>
-                {/* <p className="card-text">{current.artists[0].external_urls.spotify}</p> */}
-
                 <div className="align-self-end text-center">
                   <audio
                     className="audio-layout"
@@ -125,7 +116,6 @@ function Search(props) {
                   ></audio>
                   <button
                     className="btn btn-discovery col text-center"
-                    // value={current.album.id}
                     value={index}
                     onClick={addSong}
                   >

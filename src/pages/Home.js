@@ -1,6 +1,6 @@
 import "../styles/style.css";
 import FormControl from "../components/FormControl";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
@@ -12,8 +12,6 @@ function Home() {
   function handleDiscover(event) {
     setState(event.target.value);
   }
-
-  console.log(state);
 
   function handleSubmit(event) {
     event.preventDefault();

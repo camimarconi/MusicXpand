@@ -1,6 +1,4 @@
 function FormControl(props) {
-  console.log(props);
-
   return (
     <input
       className="mt-5"
