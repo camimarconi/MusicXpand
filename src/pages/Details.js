@@ -22,13 +22,9 @@ function Details(props) {
 
   const [counter, setCounter] = useState();
 
-  console.log("TOP TRACKS", topTracks);
-  console.log("artist", artist);
-
   useEffect(() => {
     spotifyApi.getArtistAlbums(id).then(
       function (data) {
-        // console.log("Artist albums", data);
         setState([...data.items]);
       },
       function (err) {
@@ -37,7 +33,6 @@ function Details(props) {
     );
     spotifyApi.getArtist(id).then(
       function (data) {
-        console.log("Artist information", data);
         setArtist({ ...data });
       },
       function (err) {
@@ -55,8 +50,6 @@ function Details(props) {
   }, [props.token, id]);
 
   function addSong(event) {
-    //capturar o id que está no search
-    // newList ser vinculada com o state do com ponente Playlist
     let index = event.currentTarget.value;
     const albumCover = topTracks[index].album.images[0].url;
     const songName = topTracks[index].name;
@@ -77,7 +70,6 @@ function Details(props) {
         namePlaylistUser: "",
       })
       .then((response) => {
-        console.log("!!!!!!", response.data); //NOTIFICAÇÃO
         axios
           .get("https://ironrest.herokuapp.com/musicxpand/")
           .then((response) => {
@@ -85,7 +77,6 @@ function Details(props) {
               (element) => element.coverUser === ""
             );
             setCounter(onlyMusics.length);
-            console.log(counter);
           })
           .catch((err) => console.error(err));
       })
@@ -106,8 +97,6 @@ function Details(props) {
       .catch((err) => console.error(err));
   }, []);
 
-  // const albumid = topTracks[0].id;
-
   return (
     <div className="bg-dark">
       <Navbar counter={counter} />
@@ -118,7 +107,6 @@ function Details(props) {
         <div className="main-wrapper m-5">
           <h2 className="tracks">Top Tracks</h2>
         </div>
-        {/* <h2 className="result d-flex flex-row">Playlist</h2> */}
         <div className="container">
           <div className="main-wrapper m-4">
             {topTracks.map((current, index) => {
@@ -172,7 +160,6 @@ function Details(props) {
                           </button>
                           <button
                             className="btn btn-discovery col text-center"
-                            // value={current.album.id}
                             value={index}
                             onClick={addSong}
                           >
@@ -190,7 +177,6 @@ function Details(props) {
         <h2 className="albums mt-5">Albums</h2>
         <div className="d-flex flex-wrap justify-content-around">
           {state.map((current) => {
-            console.log(current);
             return (
               <Link
                 key={current.id}

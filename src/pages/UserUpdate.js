@@ -19,7 +19,7 @@ function UserUpdate() {
       namePlaylistUser: "",
     },
   ]);
-  // const [albumDataFromSpotifyApi, setAlbumDataFromSpotifyApi] = useState([]);
+
   const [playlistCoverInfo, setPlaylistCoverInfo] = useState({
     albumCover: "",
     songName: "",
@@ -46,14 +46,11 @@ function UserUpdate() {
           (element) => element.coverUser !== ""
         );
         if (!!coverInfo.length) {
-          console.log("!!coverInfo.length", !!coverInfo.length);
           setPlaylistCoverInfo(...coverInfo);
           setHasPlaylist(true);
         }
         // setMusicXpandListApi(response.data);
         setMusicXpandListApi([...onlyMusics]);
-        console.log(onlyMusics.length);
-        console.log("coverInfo DENTRO DO USE EFFECT", coverInfo);
         setCounter(onlyMusics.length);
       })
       .catch((err) => console.error(err));
@@ -73,9 +70,6 @@ function UserUpdate() {
   const navigate = useNavigate();
 
   const { id } = useParams();
-  // const { _id } = useParams();
-
-  console.log(id);
 
   useEffect(() => {
     async function fetchInfo() {
@@ -84,7 +78,6 @@ function UserUpdate() {
           `https://ironrest.herokuapp.com/musicxpand/${id}`
         );
         setUserUpdateInfo({ ...response.data });
-        console.log("o que eu tô pegando aqui", userUpdateInfo);
       } catch (err) {
         console.error(err);
       }
@@ -99,26 +92,18 @@ function UserUpdate() {
     });
   };
 
-  console.log("APÓS APERTAR BTN", userUpdateInfo);
-
   async function handleSubmit(event) {
     event.preventDefault();
     const data = { ...userUpdateInfo };
     delete data._id;
 
-    console.log(data);
-
     try {
-      // PUT vs. PATCH: o PUT é a ação de substituição, enquanto o PATCH é a de atualização. O PUT tem potencial de destruir informação caso o objeto enviado na requisição PUT não contenha todos os campos que o objeto original contém
       const response = await axios.put(
         `https://ironrest.herokuapp.com/musicxpand/${id}`,
         data
       );
-      console.log("BATATAAAAAAA ", response.data);
       navigate("/playlist/");
-    } catch (err) {
-      console.error("BANANAAAA", err);
-    }
+    } catch (err) {}
   }
 
   return (

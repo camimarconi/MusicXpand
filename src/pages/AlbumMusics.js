@@ -23,7 +23,6 @@ function AlbumMusics(props) {
     spotifyApi
       .getAlbum(id)
       .then(function (data) {
-        console.log("primeiro DATA", data);
         setState({ ...data });
         return data.tracks.items.map(function (t) {
           return t.id;
@@ -34,9 +33,7 @@ function AlbumMusics(props) {
         return spotifyApi.getTracks(trackIds);
       })
       .then(function (tracksInfo) {
-        console.log("depois tracksInfo", tracksInfo);
         setStateTracks(tracksInfo.tracks);
-        console.log("por ultimo statetracks", stateTracks);
         setAlbumCover(tracksInfo.tracks[0].album.images[0].url);
         setArtistName(tracksInfo.tracks[0].artists[0].name);
       })
@@ -46,10 +43,7 @@ function AlbumMusics(props) {
   }, [props.token, id]);
 
   function addSong(event) {
-    //capturar o id que está no search
-    // newList ser vinculada com o state do com ponente Playlist
     let index = event.currentTarget.value;
-    console.log(index);
     const albumCover = stateTracks[index].album.images[0].url;
     const songName = stateTracks[index].name;
     const artistName = stateTracks[index].artists;
@@ -69,7 +63,6 @@ function AlbumMusics(props) {
         namePlaylistUser: "",
       })
       .then((response) => {
-        console.log("!!!!!!", response.data); //NOTIFICAÇÃO
         axios
           .get("https://ironrest.herokuapp.com/musicxpand/")
           .then((response) => {
@@ -77,7 +70,6 @@ function AlbumMusics(props) {
               (element) => element.coverUser === ""
             );
             setCounter(onlyMusics.length);
-            console.log(counter);
           })
           .catch((err) => console.error(err));
       })
@@ -114,7 +106,6 @@ function AlbumMusics(props) {
 
       <div className="main-wrapper m-5">
         {stateTracks.map((current, index) => {
-          console.log("current do map", current);
           return (
             <div className="container main-container" key={index}>
               <div className="row main-row">
