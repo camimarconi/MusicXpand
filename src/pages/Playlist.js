@@ -105,7 +105,7 @@ function Playlist(props) {
       <Navbar counter={counter} />
       <div className="container">
         {showForm && !hasPlaylist ? (
-          <form onSubmit={handleSubmit} className="m-5">
+          <form onSubmit={handleSubmit} autocomplete="off" className="m-5">
             <div className="custom-file mt-3">
               <input
                 placeholder="Playlist's photo (required)"

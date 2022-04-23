@@ -115,7 +115,11 @@ function UserUpdate() {
             <div className="col-12 align-center">
               <div className="row justify-content-sm-between text-sm-center">
                 <div className="align-middle align-self-center text-sm-center">
-                  <form onSubmit={handleSubmit} className="m-5">
+                  <form
+                    onSubmit={handleSubmit}
+                    autocomplete="off"
+                    className="m-5"
+                  >
                     <div className="custom-file">
                       <input
                         placeholder="My Playlist's photo"

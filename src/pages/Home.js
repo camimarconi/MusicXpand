@@ -53,7 +53,7 @@ function Home() {
                 </p>
               </div>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} autocomplete="off">
               <div className="mt-4">
                 <FormControl onChange={handleDiscover} value={state} />
               </div>
