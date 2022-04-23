@@ -135,10 +135,10 @@ function AlbumMusics(props) {
                       })}
                     </div>
                     <div className="col-md-2 col-sm-12 opacity-75 align-self-center text-sm-center m-2 details-xs">
-                      <h5 className="album-name mb-0">{current.name}</h5>
+                      <h5 className="album-name mb-0">{state.name}</h5>
                     </div>
 
-                    <div className="col-md-3 col-sm-12 align-self-center text-sm-center m-2 details-xs">
+                    <div className="col-md-2 col-sm-12 align-self-center text-sm-center m-2 details-xs">
                       <button
                         type="button"
                         className="btn btn-block btn-listen m-1"
