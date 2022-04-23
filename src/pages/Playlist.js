@@ -43,10 +43,12 @@ function Playlist(props) {
       .get("https://ironrest.herokuapp.com/musicxpand/")
       .then((response) => {
         const onlyMusics = response.data.filter(
-          (element) => element.coverUser === ""
+          (element) =>
+            element.namePlaylistUser === "" && element.coverUser === ""
         );
         const coverInfo = response.data.filter(
-          (element) => element.coverUser !== ""
+          (element) =>
+            element.coverUser !== "" && element.namePlaylistUser !== ""
         );
         if (!!coverInfo.length) {
           setPlaylistCoverInfo(...coverInfo);
@@ -106,23 +108,25 @@ function Playlist(props) {
           <form onSubmit={handleSubmit} className="m-5">
             <div className="custom-file mt-3">
               <input
-                placeholder="My Playlist's photo"
+                placeholder="Playlist's photo (required)"
                 id="userCreateCover"
                 name="coverUser"
                 value={playlistCoverInfo.coverUser}
                 onChange={handleFormChange}
                 type="text"
+                style={{ width: "193px" }}
               />
             </div>
 
             <div className="mt-3">
               <input
-                placeholder="My Playlist's name"
+                placeholder="Playlist's name (required)"
                 id="userCreateName"
                 name="namePlaylistUser"
                 value={playlistCoverInfo.namePlaylistUser}
                 onChange={handleFormChange}
                 type="text"
+                style={{ width: "193px" }}
               />
               <div className="mt-3">
                 <button
