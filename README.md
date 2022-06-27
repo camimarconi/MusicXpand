@@ -20,7 +20,7 @@ Fully functioning CRUD implemented.
 Available for desktop and mobile! 
 💻 📱 <br> <br>
 
-Ironhack PPT presentation [here](https://docs.google.com/presentation/d/1jbwjSc8AeZk_j3bRLdMlrPl7gd8i7Wd_1IwZLsHrPLA/edit?usp=sharing).
+Ironhack PPT presentation [here](https://drive.google.com/file/d/16NLyo__NLyZV0slNvZVA_IoYz7D0h6Hm/view?usp=sharing).
 <br>
 <br>
 
