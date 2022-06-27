@@ -24,11 +24,12 @@ Ironhack PPT presentation [here](https://docs.google.com/presentation/d/1jbwjSc8
 <br>
 <br>
 
-✨ Camila Marconi - [github](https://github.com/camimarconi) <br>
-✨ Natalia Rudiger Gelinski - [github](https://github.com/natriuge)
+✨ Camila Marconi - [github](https://github.com/camimarconi) and [LinkedIn](https://www.linkedin.com/in/camila-marconi/)<br>
+✨ Natalia Rudiger Gelinski - [github](https://github.com/natriuge) and [LinkedIn](https://www.linkedin.com/in/natalia-rudiger/)
 <br> 
 <br>
 
-<i> Final Project Module II <br>
-Web Development Ironhack <br>
+<i> IronHack Web Development Project - Module 2 <br>
+Objects: Build a React App and implement a fully functioning CRUD.
+<br>
 April 2022 - São Paulo<br><i>
